@@ -20,13 +20,6 @@ class ImsDiff extends ImsBaseClass {
     // },
   // }
 
-  onResize() {
-    super.onResize();
-    this.#loadImages();
-    this.#draw(0, 0.5);
-    this.ref.slider.style.left = '50%';
-  }
-
   #loadImages() {
     this.srcData.srcList.forEach((imgUrl, idx) => {
       let img = this.#images[idx] || new Image();
@@ -42,6 +35,13 @@ class ImsDiff extends ImsBaseClass {
       }
       img.src = imgUrl;
     });
+  }
+
+  onResize() {
+    super.onResize();
+    this.#loadImages();
+    this.#draw(0, 0.5);
+    this.ref.slider.style.left = '50%';
   }
 
   init() {
@@ -94,6 +94,9 @@ class ImsDiff extends ImsBaseClass {
   #draw(idx, lk) {
     let img1 = this.#images[idx];
     let img2 = this.#images[idx + 1];
+    if (!img1 || !img2) {
+      return;
+    }
     let w = img1.width;
     let h = img1.height;
     this.canvas.width = w;

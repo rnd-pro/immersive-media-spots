@@ -2,6 +2,7 @@ import ImsBaseClass from '../../lib/ImsBaseClass.js';
 import { template } from './template.js';
 import { styles } from './styles.js';
 import { ImsVideoData } from './ImsVideoData.js';
+// @ts-expect-error
 import { Hls } from 'hls.js/dist/hls.mjs';
 
 // /** @enum {String} */

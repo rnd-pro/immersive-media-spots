@@ -1,5 +1,28 @@
-.DS_Store
-node_modules
-TMP
+## editors
+/.idea
+/.vscode
+/.agicoder
+/.qoder
 
-.codegpt
+## system files
+.DS_Store
+
+## npm
+/node_modules/
+/npm-debug.log
+/package-lock.json
+
+## dev
+TMP
+build
+dist
+env
+test
+
+## Cloud Images Toolkit
+cit/cit-store/
+cit/CIT_API_KEY
+
+## Runtime
+secrets/
+.env
