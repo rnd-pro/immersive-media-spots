@@ -1,5 +1,8 @@
 # IMS - Interactive Media Spots
 
+[![npm version](https://badge.fury.io/js/interactive-media-spots.svg)](https://badge.fury.io/js/interactive-media-spots)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A lightweight collection of web components for interactive media visualization.
 
 ## Widgets
