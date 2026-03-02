@@ -19,27 +19,26 @@ ims-video-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
-  background-color: rgba(0, 0, 0, .3);
+  color: var(--color-fg, #fff);
+  background-color: var(--ims-toolbar-bg, rgba(0, 0, 0, 0.3));
   backdrop-filter: blur(4px);
-  transition: 0.4s;
-  padding: 5px;
-  gap: 5px;
+  transition: var(--ims-transition, 0.4s);
+  padding: var(--ims-toolbar-padding, 5px);
+  gap: var(--ims-toolbar-gap, 5px);
   user-select: none;
-  bottom: 10px;
-
-  border-radius: 22px;
+  bottom: var(--ims-toolbar-bottom, 10px);
+  border-radius: var(--ims-toolbar-radius, 22px);
 
   &:hover {
     opacity: 1 !important;
-    background-color: rgba(0, 0, 0, .6);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    background-color: var(--ims-toolbar-bg-hover, rgba(0, 0, 0, 0.6));
+    box-shadow: var(--ims-toolbar-shadow, 0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   .tb-block {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: var(--ims-toolbar-gap, 5px);
   }
 
   .timer {

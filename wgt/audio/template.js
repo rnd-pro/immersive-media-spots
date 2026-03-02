@@ -1,9 +1,6 @@
 import { html } from '@symbiotejs/symbiote';
+export { ImsAudioToolbar } from './ims-audio-toolbar.js';
 
 export const template = html`
 <canvas ref="canvas"></canvas>
-<div class="controls">
-  <ims-button ${{'@icon': 'ppIcon', onclick: 'togglePlay'}}></ims-button>
-  <span class="time">{{currentTime}} / {{totalTime}}</span>
-  <ims-button icon="fs_on" ${{onclick: 'onFs'}}></ims-button>
-</div>`;
+<ims-audio-toolbar></ims-audio-toolbar>`;

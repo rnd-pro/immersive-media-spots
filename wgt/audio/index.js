@@ -17,17 +17,34 @@ export class ImsAudio extends ImsBaseClass {
   #waveformData;
   #rafId;
 
-  ppIcon = 'play';
-  currentTime = '00:00';
-  totalTime = '00:00';
+  init$ = {
+    ppIcon: 'play',
+    currentTime: '00:00',
+    totalTime: '00:00',
+    volIcon: 'unmute',
+    volumeValue: 100,
 
-  togglePlay() {
-    if (!this.#audio) return;
-    if (this.#audio.paused) {
-      this.#audio.play();
-    } else {
-      this.#audio.pause();
-    }
+    togglePlay: () => {
+      if (!this.#audio) return;
+      if (this.#audio.paused) {
+        this.#audio.play();
+      } else {
+        this.#audio.pause();
+      }
+    },
+
+    toggleMute: () => {
+      if (!this.#audio) return;
+      this.#audio.muted = !this.#audio.muted;
+      this.$.volIcon = this.#audio.muted ? 'mute' : 'unmute';
+    },
+
+    onVolChange: (e) => {
+      if (!this.#audio) return;
+      let val = parseFloat(e.currentTarget.$.value);
+      this.#audio.volume = val / 100;
+      this.$.volumeValue = val;
+    },
   }
 
   /**
@@ -82,10 +99,19 @@ export class ImsAudio extends ImsBaseClass {
 
   init() {
     this.#audio = new Audio();
-    this.#audio.crossOrigin = 'anonymous';
-
     let audioSrc = this.srcData.srcList?.[0];
     if (!audioSrc) return;
+    try {
+      let srcUrl = new URL(audioSrc, location.href);
+      if (srcUrl.origin === location.origin) {
+        this.#audio.crossOrigin = 'anonymous';
+      }
+    } catch (e) {
+      // relative URL — same origin
+      this.#audio.crossOrigin = 'anonymous';
+    }
+
+
 
     this.#audio.src = audioSrc;
     this.#audio.loop = this.srcData.loop || false;
@@ -102,13 +128,18 @@ export class ImsAudio extends ImsBaseClass {
       this.$.ppIcon = 'pause';
       // Lazy init AudioContext on user gesture
       if (!this.#audioCtx) {
-        this.#audioCtx = new AudioContext();
-        this.#analyser = this.#audioCtx.createAnalyser();
-        this.#analyser.fftSize = 2048;
-        this.#waveformData = new Float32Array(this.#analyser.frequencyBinCount);
-        let source = this.#audioCtx.createMediaElementSource(this.#audio);
-        source.connect(this.#analyser);
-        this.#analyser.connect(this.#audioCtx.destination);
+        try {
+          this.#audioCtx = new AudioContext();
+          this.#analyser = this.#audioCtx.createAnalyser();
+          this.#analyser.fftSize = 2048;
+          this.#waveformData = new Float32Array(this.#analyser.frequencyBinCount);
+          let source = this.#audioCtx.createMediaElementSource(this.#audio);
+          source.connect(this.#analyser);
+          this.#analyser.connect(this.#audioCtx.destination);
+        } catch (e) {
+          // Cross-origin audio — waveform unavailable
+          this.#audioCtx = null;
+        }
       }
       this.#drawWaveform();
     });

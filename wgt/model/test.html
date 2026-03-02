@@ -1,0 +1,26 @@
+<script type="importmap">
+  {
+    "imports": {
+      "@symbiotejs/symbiote": "https://esm.run/@symbiotejs/symbiote",
+      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
+      "three": "https://cdn.jsdelivr.net/npm/three/+esm",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three/examples/jsm/"
+    }
+  }
+</script>
+
+<script src="./index.js" type="module"></script>
+
+<style>
+  html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #222;
+  }
+  ims-model {
+    width: 680px;
+    height: 400px;
+  }
+</style>
+
+<ims-model src-data="./test-data.json" autoplay="true"></ims-model>

@@ -1,0 +1,9 @@
+{
+  "imsType": "model",
+  "version": "0.2.0",
+  "autoplay": true,
+  "fov": 45,
+  "bgColor": "",
+  "envMapIntensity": 1,
+  "srcList": ["https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb"]
+}

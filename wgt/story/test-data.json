@@ -1,0 +1,17 @@
+{
+  "imsType": "story",
+  "slides": [
+    {
+      "srcData": "../spinner/test-data.json",
+      "caption": "360° Product Spinner"
+    },
+    {
+      "srcData": "../pano/test-data.json",
+      "caption": "Panorama View"
+    },
+    {
+      "srcData": "../gallery/test-data.json",
+      "caption": "Image Gallery"
+    }
+  ]
+}
