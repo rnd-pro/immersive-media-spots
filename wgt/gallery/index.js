@@ -2,6 +2,7 @@ import { ImsBaseClass } from '../../lib/ImsBaseClass.js';
 import { template } from './template.js';
 import { styles } from './styles.js';
 import { ImsGalleryData } from './ImsGalleryData.js';
+import { createErrorPlaceholder } from '../../lib/createErrorPlaceholder.js';
 
 export class ImsGallery extends ImsBaseClass {
 
@@ -58,6 +59,10 @@ export class ImsGallery extends ImsBaseClass {
               this.#draw();
             });
           }
+        };
+        img.onerror = () => {
+          this.#images[idx] = createErrorPlaceholder(idx);
+          this.#draw();
         };
       }
       img.src = imgUrl;
