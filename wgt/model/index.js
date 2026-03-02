@@ -3,6 +3,7 @@ import { ImsModelData } from './ImsModelData.js';
 import * as THREE from 'three';
 import { template } from './template.js';
 import { styles } from './styles.js';
+import './ims-model-toolbar.js';
 
 export class ImsModel extends ImsBaseClass {
 
@@ -11,6 +12,7 @@ export class ImsModel extends ImsBaseClass {
   init$ = {
     onPlayPause: () => {
       this.#autoRotate = !this.#autoRotate;
+      this.ref.toolbar.$.playStateIcon = this.#autoRotate ? 'pause' : 'play';
     },
   }
 
@@ -153,6 +155,7 @@ export class ImsModel extends ImsBaseClass {
         let buffer = await resp.arrayBuffer();
         this.#model = await this.#loadGLTF(this.#scene, buffer);
         this.#autoRotate = this.srcData.autoplay !== false;
+        this.ref.toolbar.$.playStateIcon = this.#autoRotate ? 'pause' : 'play';
       } catch (err) {
         this.onError(err);
       }

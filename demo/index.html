@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMS — Interactive Media Spots Demo</title>
+  <meta name="description" content="Demo of all IMS widgets: Spinner, Diff, Gallery, Panorama, Video, 3D Model, and Audio.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "@symbiotejs/symbiote": "../node_modules/@symbiotejs/symbiote/core/index.js",
+        "three": "../node_modules/three/build/three.module.js",
+        "three/addons/": "../node_modules/three/examples/jsm/",
+        "hls.js/dist/hls.mjs": "../node_modules/hls.js/dist/hls.mjs"
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-bg: rgba(99, 99, 99, 0.85);
+      --color-fg: #fff;
+      --ui-size: 32px;
+      --ims-accent: #4fc3f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4e7;
+      min-height: 100vh;
+    }
+
+    /* --- Header --- */
+    .header {
+      text-align: center;
+      padding: 64px 24px 48px;
+      background: linear-gradient(180deg, rgba(79, 195, 247, 0.08) 0%, transparent 100%);
+    }
+    .header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #4fc3f7, #81d4fa, #b3e5fc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .version-badge {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(79, 195, 247, 0.12);
+      color: #4fc3f7;
+      border: 1px solid rgba(79, 195, 247, 0.2);
+    }
+
+    /* --- Grid --- */
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* --- Card --- */
+    .card {
+      background: #16161d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(79, 195, 247, 0.2);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .card-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(79, 195, 247, 0.1);
+      color: #4fc3f7;
+    }
+    .tag-new {
+      background: rgba(76, 175, 80, 0.12);
+      color: #66bb6a;
+    }
+    .card-body {
+      height: 480px;
+      position: relative;
+    }
+    .card-body.short {
+      height: auto;
+      min-height: 120px;
+    }
+    .card-desc {
+      padding: 16px 24px;
+      font-size: 0.88rem;
+      color: #71717a;
+      line-height: 1.5;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* --- Widget fill --- */
+    .card-body ims-spinner,
+    .card-body ims-diff,
+    .card-body ims-gallery,
+    .card-body ims-pano,
+    .card-body ims-video,
+    .card-body ims-model,
+    .card-body ims-audio {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      text-align: center;
+      padding: 32px 24px 48px;
+      color: #52525b;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .footer a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      .card-body {
+        height: 320px;
+      }
+    }
+
+    /* --- Nav pills --- */
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 24px 40px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.2s;
+    }
+    .nav a:hover {
+      background: rgba(79, 195, 247, 0.1);
+      border-color: rgba(79, 195, 247, 0.2);
+      color: #4fc3f7;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>Interactive Media Spots</h1>
+    <p>A modular Web Components library for immersive media experiences — 360° views, comparisons, panoramas, video, 3D models, and more.</p>
+    <span class="version-badge">v1.0.0</span>
+  </header>
+
+  <nav class="nav">
+    <a href="#spinner">Spinner</a>
+    <a href="#diff">Diff</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#pano">Panorama</a>
+    <a href="#video">Video</a>
+    <a href="#model">3D Model</a>
+    <a href="#audio">Audio</a>
+  </nav>
+
+  <main class="grid">
+
+    <!-- Spinner -->
+    <section class="card" id="spinner">
+      <div class="card-header">
+        <h2>
+          <span>ims-spinner</span>
+          <span class="tag">360°</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-spinner src-data="../wgt/spinner/test-data.json" autoplay="true"></ims-spinner>
+      </div>
+      <div class="card-desc">
+        360° product spinner with drag-to-rotate interaction. Supports adaptive resolution, autoplay, motion blur, and cover image.
+      </div>
+    </section>
+
+    <!-- Diff -->
+    <section class="card" id="diff">
+      <div class="card-header">
+        <h2>
+          <span>ims-diff</span>
+          <span class="tag">Compare</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-diff src-data="../wgt/diff/test-data.json"></ims-diff>
+      </div>
+      <div class="card-desc">
+        Image comparison slider — drag divide line left/right to compare two images. Ideal for before/after, A/B testing, or visual QA.
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="card" id="gallery">
+      <div class="card-header">
+        <h2>
+          <span>ims-gallery</span>
+          <span class="tag">Gallery</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-gallery src-data="../wgt/gallery/test-data.json"></ims-gallery>
+      </div>
+      <div class="card-desc">
+        Multi-image gallery with adaptive loading. Navigate through high-resolution images with toolbar controls.
+      </div>
+    </section>
+
+    <!-- Panorama -->
+    <section class="card" id="pano">
+      <div class="card-header">
+        <h2>
+          <span>ims-pano</span>
+          <span class="tag">360° Pano</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-pano src-data="../wgt/pano/test-data.json"></ims-pano>
+      </div>
+      <div class="card-desc">
+        360° panorama viewer powered by Three.js. Drag to look around, with adjustable field of view.
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="card" id="video">
+      <div class="card-header">
+        <h2>
+          <span>ims-video</span>
+          <span class="tag">Video</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-video src-data="../wgt/video/test-mp4.json"></ims-video>
+      </div>
+      <div class="card-desc">
+        Video player with multiple quality sources, HLS support, subtitle tracks, and progress bar.
+      </div>
+    </section>
+
+    <!-- 3D Model -->
+    <section class="card" id="model">
+      <div class="card-header">
+        <h2>
+          <span>ims-model</span>
+          <span class="tag tag-new">New</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <ims-model id="model-widget"></ims-model>
+      </div>
+      <div class="card-desc">
+        3D GLTF/GLB model viewer with orbit controls, auto-rotation, and zoom. Powered by Three.js.
+      </div>
+    </section>
+
+    <!-- Audio -->
+    <section class="card" id="audio">
+      <div class="card-header">
+        <h2>
+          <span>ims-audio</span>
+          <span class="tag tag-new">New</span>
+        </h2>
+      </div>
+      <div class="card-body short">
+        <ims-audio id="audio-widget"></ims-audio>
+      </div>
+      <div class="card-desc">
+        Audio waveform player with real-time Web Audio API visualization, seek, and playback controls.
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="https://github.com/nicothin/interactive-media-spots">GitHub</a> ·
+      Built with <a href="https://github.com/nicothin/symbiote.js">Symbiote.js</a> ·
+      MIT License
+    </p>
+  </footer>
+
+  <script type="module">
+    // Import all widgets
+    import '../wgt/spinner/index.js';
+    import '../wgt/diff/index.js';
+    import '../wgt/gallery/index.js';
+    import '../wgt/pano/index.js';
+    import '../wgt/video/index.js';
+    import '../wgt/model/index.js';
+    import '../wgt/audio/index.js';
+
+    // Helper: create blob URL from data object
+    function dataToUrl(data) {
+      let blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      return URL.createObjectURL(blob);
+    }
+
+    // 3D Model — load a free sample GLTF
+    let modelWidget = document.getElementById('model-widget');
+    modelWidget.setAttribute('src-data', dataToUrl({
+      imsType: 'model',
+      version: '1.0.0',
+      autoplay: true,
+      fov: 45,
+      srcList: ['https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb'],
+    }));
+
+    // Audio — load a free sample
+    let audioWidget = document.getElementById('audio-widget');
+    audioWidget.setAttribute('src-data', dataToUrl({
+      imsType: 'audio',
+      version: '1.0.0',
+      autoplay: false,
+      loop: false,
+      waveformColor: 'rgba(79, 195, 247, 0.4)',
+      progressColor: 'rgba(79, 195, 247, 0.6)',
+      srcList: ['https://cdn.pixabay.com/audio/2024/11/29/audio_a0ffc85b4d.mp3'],
+    }));
+  </script>
+
+</body>
+</html>

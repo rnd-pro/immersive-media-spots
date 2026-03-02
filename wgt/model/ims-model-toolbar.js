@@ -1,13 +1,9 @@
 import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
-export class ImsSpinnerToolbar extends Symbiote {
-  init$ = {
-    playStateIcon: 'play',
-    stopIconDisabled: true,
-    zoomStateIcon: 'zoom_in',
-    fsStateIcon: 'fs_on',
-  }
+export class ImsModelToolbar extends Symbiote {
+  playStateIcon = 'pause';
+  fsStateIcon = 'fs_on';
 
   initCallback() {
     this.sub('^fullscreen', (val) => {
@@ -16,8 +12,8 @@ export class ImsSpinnerToolbar extends Symbiote {
   }
 }
 
-ImsSpinnerToolbar.rootStyles = css`
-ims-spinner-toolbar {
+ImsModelToolbar.rootStyles = css`
+ims-model-toolbar {
   position: absolute;
   display: inline-flex;
   gap: var(--ims-toolbar-gap, 5px);
@@ -26,6 +22,8 @@ ims-spinner-toolbar {
   color: var(--color-fg, #fff);
   padding: var(--ims-toolbar-padding, 5px);
   z-index: 10000;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: var(--ims-toolbar-bottom, 10px);
   border-radius: var(--ims-toolbar-radius, 22px);
   transition: var(--ims-transition, 0.5s);
@@ -37,12 +35,9 @@ ims-spinner-toolbar {
 }
 `;
 
-ImsSpinnerToolbar.template = html`
+ImsModelToolbar.template = html`
 <ims-button ${{onclick: '^onPlayPause', '@icon': 'playStateIcon'}}></ims-button>
-<ims-button ${{onclick: '^onStop', '@disabled': 'stopIconDisabled'}} icon="stop"></ims-button>
-<ims-button ${{onclick: '^onZoomIn'}} icon="zoom_in"></ims-button>
-<ims-button ${{onclick: '^onZoomOut'}} icon="zoom_out"></ims-button>
 <ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
 `;
 
-ImsSpinnerToolbar.reg('ims-spinner-toolbar');
+ImsModelToolbar.reg('ims-model-toolbar');
