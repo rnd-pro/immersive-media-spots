@@ -2,11 +2,8 @@ import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
 export class ImsGalleryToolbar extends Symbiote {
-  init$ = {
-    playStateIcon: 'play',
-    fsStateIcon: 'fs_on',
-  }
-
+  playStateIcon = 'play';
+  fsStateIcon = 'fs_on';
   initCallback() {
     this.sub('^fullscreen', (val) => {
       this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';

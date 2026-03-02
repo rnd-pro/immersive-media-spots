@@ -17,14 +17,9 @@ export class ImsAudio extends ImsBaseClass {
   #waveformData;
   #rafId;
 
-  init$ = {
-    ppIcon: 'play',
-    currentTime: '00:00',
-    totalTime: '00:00',
-    onPP: () => {
-      this.togglePlay();
-    },
-  };
+  ppIcon = 'play';
+  currentTime = '00:00';
+  totalTime = '00:00';
 
   togglePlay() {
     if (!this.#audio) return;

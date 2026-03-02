@@ -13,6 +13,7 @@
     {
       "imports": {
         "@symbiotejs/symbiote": "../node_modules/@symbiotejs/symbiote/core/index.js",
+        "@symbiotejs/symbiote/utils": "../node_modules/@symbiotejs/symbiote/utils/index.js",
         "three": "../node_modules/three/build/three.module.js",
         "three/addons/": "../node_modules/three/examples/jsm/",
         "hls.js/dist/hls.mjs": "../node_modules/hls.js/dist/hls.mjs"
@@ -345,6 +346,10 @@
   </footer>
 
   <script type="module">
+    // Enable Symbiote dev mode for verbose logging
+    import Symbiote from '@symbiotejs/symbiote';
+    Symbiote.devMode = true;
+
     // Import all widgets
     import '../wgt/spinner/index.js';
     import '../wgt/diff/index.js';

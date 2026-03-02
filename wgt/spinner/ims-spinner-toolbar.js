@@ -2,12 +2,10 @@ import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
 export class ImsSpinnerToolbar extends Symbiote {
-  init$ = {
-    playStateIcon: 'play',
-    stopIconDisabled: true,
-    zoomStateIcon: 'zoom_in',
-    fsStateIcon: 'fs_on',
-  }
+  playStateIcon = 'play';
+  stopIconDisabled = true;
+  zoomStateIcon = 'zoom_in';
+  fsStateIcon = 'fs_on';
 
   initCallback() {
     this.sub('^fullscreen', (val) => {

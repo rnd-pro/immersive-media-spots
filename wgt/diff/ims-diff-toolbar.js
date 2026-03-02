@@ -2,9 +2,7 @@ import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
 export class ImsDiffToolbar extends Symbiote {
-  init$ = {
-    fsStateIcon: 'fs_on',
-  }
+  fsStateIcon = 'fs_on';
 
   initCallback() {
     this.sub('^fullscreen', (val) => {

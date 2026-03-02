@@ -3,9 +3,7 @@ export { ImsButton } from '../../lib/ims-button.js';
 export { ImsRange } from '../../lib/ims-range.js';
 
 export class ImsVideoToolbar extends Symbiote {
-  init$ = {
-    fsStateIcon: 'fs_on',
-  }
+  fsStateIcon = 'fs_on';
 
   initCallback() {
     this.sub('^fullscreen', (val) => {
