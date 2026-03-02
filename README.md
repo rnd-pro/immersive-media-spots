@@ -109,8 +109,8 @@ Universal component, that loads dependencies dynamically using CDN with the cert
 <script type="importmap">
   {
     "imports": {
-      "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@2.3.2/+esm",
-      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/+esm",
+      "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@3/+esm",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/+esm",
       "hls.js": "https://cdn.jsdelivr.net/npm/hls.js@1"
     }
   }

@@ -1,0 +1,15 @@
+/*
+ * IMS Light Theme
+ * Usage: <ims-spinner class="ims-theme-light" ...>
+ * Or: <div class="ims-theme-light"> <ims-spinner ... > </div>
+ */
+
+.ims-theme-light {
+  --color-bg: rgba(245, 245, 245, 0.95);
+  --color-fg: #1a1a1a;
+  --color-slider: rgba(0, 0, 0, 0.3);
+  --ui-bg: rgba(0, 0, 0, 0.08);
+  --ui-bg-hover: rgba(0, 0, 0, 0.15);
+  --ims-accent: #0277bd;
+  --ims-progress-fill: #0277bd;
+}

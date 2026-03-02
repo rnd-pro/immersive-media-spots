@@ -4,7 +4,27 @@
   "description": "Interactive Media Spots",
   "type": "module",
   "sideEffects": false,
+  "main": "./lib/ImsBaseClass.js",
   "types": "./types.d.ts",
+  "exports": {
+    ".": "./lib/ImsBaseClass.js",
+    "./spinner": "./wgt/spinner/index.js",
+    "./diff": "./wgt/diff/index.js",
+    "./gallery": "./wgt/gallery/index.js",
+    "./pano": "./wgt/pano/index.js",
+    "./video": "./wgt/video/index.js",
+    "./viewer": "./wgt/viewer/index.js",
+    "./model": "./wgt/model/index.js",
+    "./audio": "./wgt/audio/index.js",
+    "./story": "./wgt/story/index.js",
+    "./utils/dataToImage": "./lib/dataToImage.js",
+    "./utils/imageToData": "./lib/imageToData.js",
+    "./plugins/watermark": "./lib/plugins/watermark.js",
+    "./plugins/analytics": "./lib/plugins/analytics.js",
+    "./tokens.css": "./lib/tokens.css",
+    "./themes/light.css": "./lib/themes/light.css",
+    "./themes/minimal.css": "./lib/themes/minimal.css"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -14,7 +34,8 @@
   },
   "scripts": {
     "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
-    "types": "tsc -p hook.json"
+    "types": "tsc -p hook.json",
+    "test": "node --test tests/*.test.js"
   },
   "author": "team@rnd-pro.com",
   "license": "MIT",
@@ -23,7 +44,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@symbiotejs/symbiote": "^3.0.4",
+    "@symbiotejs/symbiote": "^3.2.1",
     "hls.js": "^1.5.18",
     "three": "^0.171.0"
   }

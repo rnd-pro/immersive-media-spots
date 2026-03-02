@@ -1,0 +1,26 @@
+# Development
+test/
+wgt/*/test*
+.git-hooks/
+hook.json
+tsconfig.json
+
+# Editors & system
+.DS_Store
+.idea/
+.vscode/
+.agicoder/
+.qoder/
+
+# Dev artifacts
+TMP/
+build/
+dist/
+env/
+
+# Cloud Images Toolkit
+cit/
+
+# Runtime
+secrets/
+.env

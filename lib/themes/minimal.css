@@ -1,0 +1,14 @@
+/*
+ * IMS Minimal Theme
+ * Transparent, borderless — for editorial and CMS integration
+ * Usage: <ims-spinner class="ims-theme-minimal" ...>
+ */
+
+.ims-theme-minimal {
+  --color-bg: transparent;
+  --color-fg: inherit;
+  --color-slider: rgba(128, 128, 128, 0.4);
+  --ui-bg: transparent;
+  --ui-bg-hover: rgba(128, 128, 128, 0.2);
+  --ui-size: 28px;
+}

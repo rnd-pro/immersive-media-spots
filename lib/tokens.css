@@ -1,0 +1,35 @@
+/*
+ * IMS CSS Design Tokens
+ * Import via: <link rel="stylesheet" href="interactive-media-spots/lib/tokens.css">
+ * or include via CDN alongside widget scripts
+ */
+
+:root {
+  /* Surface */
+  --color-bg: rgba(0, 0, 0, 0.85);
+  --color-fg: #fff;
+  --color-slider: rgba(0, 0, 0, 0.2);
+
+  /* UI controls */
+  --ui-size: 32px;
+  --ui-gap: 4px;
+  --ui-radius: 6px;
+  --ui-padding: 4px 8px;
+  --ui-bg: rgba(255, 255, 255, 0.1);
+  --ui-bg-hover: rgba(255, 255, 255, 0.3);
+
+  /* Accent */
+  --ims-accent: #4fc3f7;
+
+  /* Progress bar */
+  --ims-progress-bg: rgba(255, 255, 255, 0.2);
+  --ims-progress-fill: currentColor;
+  --ims-progress-height: 2px;
+
+  /* Typography */
+  --ims-font: system-ui, -apple-system, sans-serif;
+  --ims-font-mono: monospace;
+
+  /* Transitions */
+  --ims-transition: 0.2s ease;
+}
