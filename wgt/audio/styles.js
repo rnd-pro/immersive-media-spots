@@ -5,6 +5,7 @@ export const styles = css`
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   background-color: var(--color-bg);
   color: var(--color-fg);

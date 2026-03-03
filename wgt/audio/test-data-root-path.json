@@ -1,0 +1,9 @@
+{
+  "imsType": "audio",
+  "version": "0.2.0",
+  "autoplay": false,
+  "loop": false,
+  "waveformColor": "rgba(79, 195, 247, 0.4)",
+  "progressColor": "rgba(79, 195, 247, 0.6)",
+  "srcList": ["../wgt/audio/test-audio.wav"]
+}

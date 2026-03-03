@@ -1,7 +1,7 @@
 {
   "imsType": "model",
   "version": "0.2.0",
-  "autoplay": true,
+  "autoplay": false,
   "fov": 45,
   "bgColor": "",
   "envMapIntensity": 1,
