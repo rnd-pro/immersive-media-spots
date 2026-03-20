@@ -23,7 +23,8 @@
     "./plugins/analytics": "./lib/plugins/analytics.js",
     "./tokens.css": "./lib/tokens.css",
     "./themes/light.css": "./lib/themes/light.css",
-    "./themes/minimal.css": "./lib/themes/minimal.css"
+    "./themes/minimal.css": "./lib/themes/minimal.css",
+    "./*": "./*"
   },
   "publishConfig": {
     "access": "public"
