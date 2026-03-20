@@ -132,6 +132,7 @@ export class ImsPano extends ImsBaseClass {
     this.style.touchAction = 'none';
     this.addEventListener('pointerdown', this.#onPointerDown);
     this.addEventListener('wheel', this.#onDocumentMouseWheel);
+    this.$.progress = 100;
   }
 }
 

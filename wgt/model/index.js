@@ -166,6 +166,7 @@ export class ImsModel extends ImsBaseClass {
     this.style.touchAction = 'none';
     this.addEventListener('pointerdown', this.#onPointerDown);
     this.addEventListener('wheel', this.#onWheel);
+    this.$.progress = 100;
   }
 
   destroyCallback() {

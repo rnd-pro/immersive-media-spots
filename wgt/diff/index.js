@@ -10,22 +10,18 @@ class ImsDiff extends ImsBaseClass {
   /** @type {HTMLImageElement[]} */
   #images = [];
 
-  // init$ = {
-    // noFilters: true,
-    // useFilter: true,
-    // onFilter: () => {
-    //   this.$.useFilter = !this.$.useFilter;
-    //   this.#draw(0, 0.5);
-    //   this.ref.slider.style.left = '50%';
-    // },
-  // }
 
   #loadImages() {
+    let total = this.srcData.srcList.length;
+    let loaded = 0;
+    this.$.progress = 0;
     this.srcData.srcList.forEach((imgUrl, idx) => {
       let img = this.#images[idx] || new Image();
       if (!this.#images[idx]) {
         img.onload = () => {
-          if (this.srcData.srcList.length === this.#images.length) {
+          loaded++;
+          this.$.progress = (loaded / total) * 100;
+          if (loaded === total) {
             window.setTimeout(() => {
               this.#start();
             });

@@ -49,18 +49,25 @@ export class ImsGallery extends ImsBaseClass {
   /** @type {HTMLImageElement[]} */
   #images = [];
   #loadImages() {
+    let total = this.srcData.srcList.length;
+    let loaded = 0;
+    this.$.progress = 0;
     this.srcData.srcList.forEach((imgUrl, idx) => {
       let img = this.#images[idx] || new Image();
       if (!this.#images[idx]) {
         this.#images.push(img);
         img.onload = () => {
-          if (this.srcData.srcList.length === this.#images.length) {
+          loaded++;
+          this.$.progress = (loaded / total) * 100;
+          if (loaded === total) {
             window.requestAnimationFrame(() => {
               this.#draw();
             });
           }
         };
         img.onerror = () => {
+          loaded++;
+          this.$.progress = (loaded / total) * 100;
           this.#images[idx] = createErrorPlaceholder(idx);
           this.#draw();
         };

@@ -159,6 +159,7 @@ export class ImsVideo extends ImsBaseClass {
     if (!this.srcData.hideUi) {
       this.setAttribute('controls', '');
     }
+    this.$.progress = 100;
   }
 
   /**

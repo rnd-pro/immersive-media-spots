@@ -118,6 +118,7 @@ export class ImsAudio extends ImsBaseClass {
 
     this.#audio.addEventListener('loadedmetadata', () => {
       this.$.totalTime = this.#timeFmt(this.#audio.duration);
+      this.$.progress = 100;
     });
 
     this.#audio.addEventListener('timeupdate', () => {
