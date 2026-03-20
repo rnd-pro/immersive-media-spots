@@ -44,7 +44,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@symbiotejs/symbiote": "^3.2.1",
+    "@symbiotejs/symbiote": "^3.5.7",
     "hls.js": "^1.5.18",
     "three": "^0.171.0"
   }
