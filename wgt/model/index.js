@@ -169,6 +169,39 @@ export class ImsModel extends ImsBaseClass {
     this.$.progress = 100;
   }
 
+  /** Reset camera to initial position */
+  resetCamera() {
+    this.#rotationX = 0;
+    this.#rotationY = 0;
+    if (this.#model) {
+      this.#model.rotation.x = 0;
+      this.#model.rotation.y = 0;
+    }
+    this.#camera.fov = this.srcData.fov || 45;
+    // @ts-ignore - position exists on Object3D
+    this.#camera.position.z = 3;
+    this.#camera.updateProjectionMatrix();
+  }
+
+  /**
+   * Set model rotation
+   * @param {number} x - rotation around X axis in radians
+   * @param {number} y - rotation around Y axis in radians
+   */
+  setRotation(x, y) {
+    if (this.#model) {
+      this.#model.rotation.x = x;
+      this.#model.rotation.y = y;
+      this.#rotationX = x;
+      this.#rotationY = y;
+    }
+  }
+
+  /** Toggle auto-rotation */
+  toggleAutoRotate() {
+    this.$.onPlayPause();
+  }
+
   destroyCallback() {
     super.destroyCallback();
     this.#renderer?.setAnimationLoop(null);

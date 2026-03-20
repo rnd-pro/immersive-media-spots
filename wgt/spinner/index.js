@@ -229,6 +229,27 @@ class ImsSpinner extends ImsBaseClass {
     clearInterval(this.#playInterval);
   }
 
+  /** Start playback */
+  play() {
+    this.#play();
+    this.setAttribute('active', '');
+  }
+
+  /** Pause playback */
+  pause() {
+    this.#pause();
+    this.removeAttribute('active');
+  }
+
+  /**
+   * Jump to a specific frame
+   * @param {number} n - frame index (0-based)
+   */
+  goToFrame(n) {
+    let max = this.#imgArray.length - 1;
+    this.currentFrame = Math.max(0, Math.min(n, max));
+  }
+
   #setCanvasTransforms() {
     window.requestAnimationFrame(() => {
       this.canvas.style.transform = `scale(${this._zoomLevel}) translate(${this._panX}px, ${this._panY}px)`;

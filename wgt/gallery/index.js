@@ -80,6 +80,25 @@ export class ImsGallery extends ImsBaseClass {
     this.#loadImages();
   }
 
+  /**
+   * Go to a specific image
+   * @param {number} index - image index (0-based)
+   */
+  goTo(index) {
+    let max = this.#images.length - 1;
+    this.$.current = Math.max(0, Math.min(index, max));
+  }
+
+  /** Go to next image */
+  next() {
+    this.$.onNext();
+  }
+
+  /** Go to previous image */
+  prev() {
+    this.$.onPrev();
+  }
+
   onResize() {
     super.onResize();
     this.#loadImages();

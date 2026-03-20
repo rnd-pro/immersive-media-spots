@@ -68,6 +68,25 @@ export class ImsStory extends Symbiote {
     viewer.setAttribute('src-data', slide.srcData);
     container.appendChild(viewer);
   }
+
+  /**
+   * Go to a specific slide
+   * @param {number} n - slide index (0-based)
+   */
+  goToSlide(n) {
+    let max = this.$.totalSlides - 1;
+    this.$.currentSlide = Math.max(0, Math.min(n, max));
+  }
+
+  /** Go to next slide */
+  next() {
+    this.$.onNext();
+  }
+
+  /** Go to previous slide */
+  prev() {
+    this.$.onPrev();
+  }
 }
 
 ImsStory.template = html`

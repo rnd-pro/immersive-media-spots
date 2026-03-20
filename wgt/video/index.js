@@ -57,6 +57,24 @@ export class ImsVideo extends ImsBaseClass {
     this.#video.volume = volume;
   }
 
+  /** Start playback */
+  play() {
+    this.#video.play();
+  }
+
+  /** Pause playback */
+  pause() {
+    this.#video.pause();
+  }
+
+  /**
+   * Seek to a position
+   * @param {number} seconds
+   */
+  seek(seconds) {
+    this.#video.currentTime = Math.max(0, Math.min(seconds, this.#video.duration || 0));
+  }
+
   init$ = {
     src: '',
     ppIcon: 'play',

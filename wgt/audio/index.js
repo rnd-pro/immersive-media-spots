@@ -25,26 +25,66 @@ export class ImsAudio extends ImsBaseClass {
     volumeValue: 100,
 
     togglePlay: () => {
-      if (!this.#audio) return;
-      if (this.#audio.paused) {
-        this.#audio.play();
-      } else {
-        this.#audio.pause();
-      }
+      this.togglePlay();
     },
 
     toggleMute: () => {
-      if (!this.#audio) return;
-      this.#audio.muted = !this.#audio.muted;
-      this.$.volIcon = this.#audio.muted ? 'mute' : 'unmute';
+      this.toggleMute();
     },
 
     onVolChange: (e) => {
       if (!this.#audio) return;
       let val = parseFloat(e.currentTarget.$.value);
-      this.#audio.volume = val / 100;
-      this.$.volumeValue = val;
+      this.setVolume(val);
     },
+  }
+
+  /** Toggle play/pause */
+  togglePlay() {
+    if (!this.#audio) return;
+    if (this.#audio.paused) {
+      this.#audio.play();
+    } else {
+      this.#audio.pause();
+    }
+  }
+
+  /** Start playback */
+  play() {
+    if (!this.#audio) return;
+    this.#audio.play();
+  }
+
+  /** Pause playback */
+  pause() {
+    if (!this.#audio) return;
+    this.#audio.pause();
+  }
+
+  /**
+   * Seek to a position
+   * @param {number} seconds
+   */
+  seek(seconds) {
+    if (!this.#audio) return;
+    this.#audio.currentTime = Math.max(0, Math.min(seconds, this.#audio.duration || 0));
+  }
+
+  /**
+   * Set volume
+   * @param {number} val - 0-100
+   */
+  setVolume(val) {
+    if (!this.#audio) return;
+    this.#audio.volume = Math.max(0, Math.min(val, 100)) / 100;
+    this.$.volumeValue = val;
+  }
+
+  /** Toggle mute */
+  toggleMute() {
+    if (!this.#audio) return;
+    this.#audio.muted = !this.#audio.muted;
+    this.$.volIcon = this.#audio.muted ? 'mute' : 'unmute';
   }
 
   /**

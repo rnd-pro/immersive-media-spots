@@ -84,6 +84,30 @@ class ImsDiff extends ImsBaseClass {
   }
 
   /**
+   * Set the diff split position
+   * @param {number} percent - share percentage (0-100)
+   */
+  setShare(percent) {
+    let k = Math.max(0, Math.min(100, percent)) / 100;
+    this.ref.slider.style.left = `${k * 100}%`;
+    this.#draw(this.#currentIdx, k);
+  }
+
+  /** @type {number} */
+  #currentIdx = 0;
+
+  /**
+   * Go to a specific diff pair
+   * @param {number} index - pair index (0-based)
+   */
+  goTo(index) {
+    let max = Math.max(0, this.#images.length - 2);
+    this.#currentIdx = Math.max(0, Math.min(index, max));
+    this.ref.slider.style.left = '50%';
+    this.#draw(this.#currentIdx, 0.5);
+  }
+
+  /**
    * @param {Number} idx
    * @param {Number} lk
    */

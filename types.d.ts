@@ -75,65 +75,6 @@ export interface ImsAudioData extends ImsBaseData {
 
 export type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData;
 
-// --- Utility Functions ---
-
-export function dataToImage(data: any, coverUrl?: string): Promise<string>;
-export function imageToData(url: string): Promise<any>;
-
-// --- Widget Classes ---
-
-import Symbiote from '@symbiotejs/symbiote';
-
-export declare class ImsBaseClass extends Symbiote {
-  srcData: ImsData;
-  override: Record<string, any>;
-  onResize(): void;
-  fillSrcVariantList(): void;
-  init(): void;
-}
-
-export declare class ImsDiff extends ImsBaseClass {
-  srcData: ImsDiffData;
-}
-
-export declare class ImsGallery extends ImsBaseClass {
-  srcData: ImsGalleryData;
-}
-
-export declare class ImsPano extends ImsBaseClass {
-  srcData: ImsPanoData;
-}
-
-export declare class ImsSpinner extends ImsBaseClass {
-  srcData: ImsSpinnerData;
-  play(): void;
-  pause(): void;
-  togglePlay(): void;
-  kill(): void;
-  currentFrame: number;
-}
-
-export declare class ImsVideo extends ImsBaseClass {
-  srcData: ImsVideoData;
-  togglePlay(): void;
-  toggleCaptions(): void;
-  toggleSound(): void;
-  setVolume(val: number): void;
-}
-
-export declare class ImsViewer extends Symbiote {}
-
-export declare class ImsModel extends ImsBaseClass {
-  srcData: ImsModelData;
-}
-
-export declare class ImsAudio extends ImsBaseClass {
-  srcData: ImsAudioData;
-  togglePlay(): void;
-}
-
-export declare class ImsStory extends Symbiote {}
-
 // --- Events ---
 
 export declare const ImsEvents: {
@@ -148,22 +89,9 @@ export declare const ImsEvents: {
 
 export interface ImsPlugin {
   name: string;
-  onInit?(widget: ImsBaseClass): void;
-  onReady?(widget: ImsBaseClass): void;
-  onResize?(widget: ImsBaseClass): void;
-  onDestroy?(widget: ImsBaseClass): void;
-  onRender?(widget: ImsBaseClass, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void;
+  onInit?(widget: any): void;
+  onReady?(widget: any): void;
+  onResize?(widget: any): void;
+  onDestroy?(widget: any): void;
+  onRender?(widget: any, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void;
 }
-
-export declare function watermark(options: {
-  text: string;
-  font?: string;
-  color?: string;
-  opacity?: number;
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
-}): ImsPlugin;
-
-export declare function analytics(options: {
-  handler: (event: { type: string; widget: string; detail?: any }) => void;
-  trackResize?: boolean;
-}): ImsPlugin;

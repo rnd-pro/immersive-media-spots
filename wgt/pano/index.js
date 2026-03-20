@@ -134,6 +134,30 @@ export class ImsPano extends ImsBaseClass {
     this.addEventListener('wheel', this.#onDocumentMouseWheel);
     this.$.progress = 100;
   }
+
+  /**
+   * Set the camera look direction
+   * @param {number} lon - longitude in degrees
+   * @param {number} lat - latitude in degrees
+   */
+  lookAt(lon, lat) {
+    this.#lon = lon;
+    this.#lat = lat;
+  }
+
+  /**
+   * Set the field of view
+   * @param {number} deg - FOV in degrees
+   */
+  setFov(deg) {
+    this.#camera.fov = THREE.MathUtils.clamp(deg, 10, this.srcData.fov || 80);
+    this.#camera.updateProjectionMatrix();
+  }
+
+  /** Toggle auto-rotation */
+  toggleAutoRotate() {
+    this.$.onPlayPause();
+  }
 }
 
 ImsPano.shadowStyles = styles;
