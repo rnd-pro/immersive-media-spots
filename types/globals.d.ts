@@ -16,24 +16,24 @@ interface ImsBaseData {
 
 // --- Widget Data Types ---
 
-export interface ImsDiffData extends ImsBaseData {
+interface ImsDiffData extends ImsBaseData {
   imsType: 'diff';
   startPosition?: number;
   filters?: string[];
 }
 
-export interface ImsGalleryData extends ImsBaseData {
+interface ImsGalleryData extends ImsBaseData {
   imsType: 'gallery';
 }
 
-export interface ImsPanoData extends ImsBaseData {
+interface ImsPanoData extends ImsBaseData {
   imsType: 'pano';
   autoplay?: boolean;
   startPosition?: number;
   fov?: number;
 }
 
-export interface ImsSpinnerData extends ImsBaseData {
+interface ImsSpinnerData extends ImsBaseData {
   imsType: 'spinner';
   autoplay?: boolean;
   startFrame?: number;
@@ -46,7 +46,7 @@ export interface ImsSpinnerData extends ImsBaseData {
   multiplePlay?: boolean;
 }
 
-export interface ImsVideoData extends ImsBaseData {
+interface ImsVideoData extends ImsBaseData {
   imsType: 'video';
   autoplay?: boolean;
   hlsSrc?: string;
@@ -57,7 +57,7 @@ export interface ImsVideoData extends ImsBaseData {
   showCover?: boolean;
 }
 
-export interface ImsModelData extends ImsBaseData {
+interface ImsModelData extends ImsBaseData {
   imsType: 'model';
   autoplay?: boolean;
   fov?: number;
@@ -65,7 +65,7 @@ export interface ImsModelData extends ImsBaseData {
   envMapIntensity?: number;
 }
 
-export interface ImsAudioData extends ImsBaseData {
+interface ImsAudioData extends ImsBaseData {
   imsType: 'audio';
   autoplay?: boolean;
   loop?: boolean;
@@ -75,7 +75,7 @@ export interface ImsAudioData extends ImsBaseData {
 
 // --- Hotspots Data Types ---
 
-export interface HotspotVisibility {
+interface HotspotVisibility {
   frame?: number | [number, number];
   image?: number | [number, number];
   yaw?: [number, number];
@@ -84,11 +84,11 @@ export interface HotspotVisibility {
   share?: [number, number];
 }
 
-export interface HotspotKeyframes {
+interface HotspotKeyframes {
   [key: string]: { x: number; y: number };
 }
 
-export interface HotspotSpot {
+interface HotspotSpot {
   id: string;
   label: string;
   x: number;
@@ -102,17 +102,17 @@ export interface HotspotSpot {
   keyframes?: HotspotKeyframes;
 }
 
-export interface ImsHotspotsData {
+interface ImsHotspotsData {
   imsType: 'hotspots';
   version: string;
   spots: HotspotSpot[];
 }
 
-export type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData | ImsHotspotsData;
+type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData | ImsHotspotsData;
 
 // --- Events ---
 
-export declare const ImsEvents: {
+declare const ImsEvents: {
   LOAD: 'ims-load';
   READY: 'ims-ready';
   ERROR: 'ims-error';
@@ -122,7 +122,7 @@ export declare const ImsEvents: {
 
 // --- Plugins ---
 
-export interface ImsPlugin {
+interface ImsPlugin {
   name: string;
   onInit?(widget: any): void;
   onReady?(widget: any): void;

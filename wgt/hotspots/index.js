@@ -8,7 +8,7 @@ export class ImsHotspots extends Symbiote {
     spots: [],
   };
 
-  /** @type {import('./ImsHotspotsData.js').HotspotSpot[]} */
+  /** @type {HotspotSpot[]} */
   #spotDefs = [];
 
   /** @type {HTMLElement} */
@@ -42,7 +42,7 @@ export class ImsHotspots extends Symbiote {
   }
 
   /**
-   * @param {import('./ImsHotspotsData.js').HotspotSpot} spot
+   * @param {HotspotSpot} spot
    */
   #onSpotClick(spot) {
     this.dispatchEvent(new CustomEvent('ims-hotspot-click', {
@@ -121,7 +121,7 @@ export class ImsHotspots extends Symbiote {
   }
 
   /**
-   * @param {import('./ImsHotspotsData.js').HotspotSpot} def
+   * @param {HotspotSpot} def
    * @param {number} stateVal
    * @returns {boolean}
    */
@@ -139,7 +139,7 @@ export class ImsHotspots extends Symbiote {
   }
 
   /**
-   * @param {import('./ImsHotspotsData.js').HotspotKeyframes} keyframes
+   * @param {HotspotKeyframes} keyframes
    * @param {number} stateVal
    * @returns {{ x: number, y: number }}
    */

@@ -19,12 +19,12 @@
     "skipLibCheck": true,
     "maxNodeModuleJsDepth": 3,
     "types": [
-      "./types.d.ts",
       "node"
     ],
     "noEmit": true
   },
   "include": [
     "**/*.js",
+    "types/globals.d.ts"
   ]
 }
