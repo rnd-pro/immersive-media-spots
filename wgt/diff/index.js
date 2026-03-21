@@ -14,6 +14,7 @@ class ImsDiff extends ImsBaseClass {
     mode: 'slider',
     hasPairs: false,
     animating: false,
+    isVertical: false,
     toggleMode: () => {
       this.toggleMode();
     },
@@ -40,8 +41,6 @@ class ImsDiff extends ImsBaseClass {
   #currentIdx = 0;
   /** @type {number} */
   #share = 0.5;
-  /** @type {boolean} */
-  #vertical = false;
   /** @type {number} */
   #animRafId = 0;
 
@@ -75,10 +74,10 @@ class ImsDiff extends ImsBaseClass {
 
   init() {
     this.$.mode = this.srcData.mode || 'slider';
-    this.#vertical = this.srcData.orientation === 'vertical';
+    this.$.isVertical = this.srcData.orientation === 'vertical';
     this.#share = (this.srcData.startPosition || 50) / 100;
     this.$.hasPairs = this.srcData.srcList.length > 2;
-    if (this.#vertical) {
+    if (this.$.isVertical) {
       this.setAttribute('vertical', '');
     }
     this.#loadImages();
@@ -99,7 +98,7 @@ class ImsDiff extends ImsBaseClass {
       this.ref.slider.style.display = 'none';
     } else {
       this.ref.slider.style.display = '';
-      if (this.#vertical) {
+      if (this.$.isVertical) {
         this.ref.slider.style.left = '';
         this.ref.slider.style.top = `${this.#share * 100}%`;
       } else {
@@ -118,13 +117,13 @@ class ImsDiff extends ImsBaseClass {
     }
     if (this.$.mode === 'onion') {
       let rect = this.canvas.getBoundingClientRect();
-      this.#share = this.#vertical
+      this.#share = this.$.isVertical
         ? Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height))
         : Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
       this.#drawOnion(this.#currentIdx, this.#share);
     } else {
       let rect = this.cnvRect;
-      if (this.#vertical) {
+      if (this.$.isVertical) {
         let top = e.clientY - rect.top;
         this.ref.slider.style.top = `${top + this.canvas.offsetTop}px`;
         this.#share = top / rect.height;
@@ -181,7 +180,7 @@ class ImsDiff extends ImsBaseClass {
 
     this.ctx2d.drawImage(img1, 0, 0, w, h);
 
-    if (this.#vertical) {
+    if (this.$.isVertical) {
       let splitY = Math.round(h * k);
       this.ctx2d.clearRect(0, splitY, w, h - splitY);
       this.ctx2d.drawImage(img2, 0, splitY, w, h - splitY, 0, splitY, w, h - splitY);
@@ -311,8 +310,8 @@ class ImsDiff extends ImsBaseClass {
 
   /** Toggle orientation between horizontal and vertical */
   toggleOrientation() {
-    this.#vertical = !this.#vertical;
-    if (this.#vertical) {
+    this.$.isVertical = !this.$.isVertical;
+    if (this.$.isVertical) {
       this.setAttribute('vertical', '');
     } else {
       this.removeAttribute('vertical');

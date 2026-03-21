@@ -6,7 +6,7 @@ export class ImsDiffToolbar extends Symbiote {
   init$ = {
     fsStateIcon: 'fs_on',
     modeIcon: 'layers',
-    orientIcon: 'horizontal',
+    orientIcon: 'diff_horizontal',
     animIcon: 'play',
   };
 
@@ -50,12 +50,16 @@ ims-diff-toolbar {
       display: none;
     }
   }
+
+  ims-button[is-vertical] {
+    transform: rotate(90deg);
+  }
 }
 `;
 
 ImsDiffToolbar.template = html`
 <ims-button ${{onclick: '^toggleMode', '@icon': 'modeIcon'}}></ims-button>
-<ims-button icon="orientation" ${{onclick: '^toggleOrientation'}}></ims-button>
+<ims-button ${{onclick: '^toggleOrientation', '@icon': 'orientIcon', '@is-vertical': '^isVertical'}}></ims-button>
 <ims-button ${{onclick: '^toggleAnimate', '@icon': 'animIcon'}}></ims-button>
 <span pair-nav ${{'@hidden': '!^hasPairs'}}>
   <ims-button icon="left" ${{onclick: '^prevPair'}}></ims-button>
