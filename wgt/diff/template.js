@@ -7,4 +7,5 @@ export const DIFF_TPL = html`
 <canvas ref="canvas"></canvas>
 <ims-progress-bar></ims-progress-bar>
 <ims-diff-toolbar></ims-diff-toolbar>
+<slot></slot>
 `;

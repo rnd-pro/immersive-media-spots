@@ -7,6 +7,10 @@
   }
 </script>
 
+<script>
+  window['__FULLSCREEN_API_UNSUPPORTED_TEST__'] = true;
+</script>
+<script src="../spinner/index.js" type="module"></script>
 <script src="./index.js" type="module"></script>
 
 <style>
@@ -15,10 +19,13 @@
     margin: 0;
     background-color: #222;
   }
-  ims-story {
-    width: 680px;
-    height: 500px;
+  ims-spinner {
+    width: 640px;
+    height: 480px;
+    position: relative;
   }
 </style>
 
-<ims-story src-data="./test-data.json"></ims-story>
+<ims-spinner src-data="../spinner/test-data.json">
+  <ims-hotspots src-data="./test-data.json"></ims-hotspots>
+</ims-spinner>

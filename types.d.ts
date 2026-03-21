@@ -73,7 +73,42 @@ export interface ImsAudioData extends ImsBaseData {
   progressColor?: string;
 }
 
-export type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData;
+// --- Hotspots Data Types ---
+
+export interface HotspotVisibility {
+  frame?: number | [number, number];
+  image?: number | [number, number];
+  yaw?: [number, number];
+  pitch?: [number, number];
+  time?: [number, number];
+  share?: [number, number];
+}
+
+export interface HotspotKeyframes {
+  [key: string]: { x: number; y: number };
+}
+
+export interface HotspotSpot {
+  id: string;
+  label: string;
+  x: number;
+  y: number;
+  targetSrcData?: string;
+  targetHotspotsData?: string;
+  url?: string;
+  action?: string;
+  emit?: string;
+  visible?: HotspotVisibility;
+  keyframes?: HotspotKeyframes;
+}
+
+export interface ImsHotspotsData {
+  imsType: 'hotspots';
+  version: string;
+  spots: HotspotSpot[];
+}
+
+export type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData | ImsHotspotsData;
 
 // --- Events ---
 

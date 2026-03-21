@@ -1,11 +1,17 @@
 # ims-viewer
 
-Universal loader that dynamically imports and renders any IMS widget based on the `imsType` field in the source data.
+Universal loader that dynamically imports and renders any IMS widget based on the `imsType` field in the source data. Also serves as the **hypermedia navigation container** when combined with `ims-hotspots`.
 
 ## Tag
 
 ```html
 <ims-viewer src-data="path/to/data.json"></ims-viewer>
+```
+
+With hotspots:
+
+```html
+<ims-viewer src-data="spinner.json" hotspots="shop-hotspots.json"></ims-viewer>
 ```
 
 ## How It Works
@@ -14,9 +20,7 @@ Universal loader that dynamically imports and renders any IMS widget based on th
 2. Reads `imsType` (e.g. `"spinner"`, `"gallery"`, `"diff"`)
 3. Dynamically imports the widget module via `url-template`
 4. Creates `<ims-{imsType}>` element, passes `src-data` as blob URL
-5. Appends the widget as a child
-
-This enables a single tag to render any widget type without knowing the type at build time.
+5. If `hotspots` attribute is set, creates `<ims-hotspots>` overlay inside the widget
 
 ## Attributes
 
@@ -25,7 +29,8 @@ This enables a single tag to render any widget type without knowing the type at 
 | `src-data` | URL to JSON config (must contain `imsType` field) |
 | `url-template` | ES module URL pattern. Placeholders: `{{version}}`, `{{imsType}}` |
 | `version` | Override version for CDN URL (default: from source data or `latest`) |
-| `cast-next` | Marker attribute — all attributes after this one are forwarded to the child widget |
+| `hotspots` | URL to hotspot config JSON (see [hotspots.md](./hotspots.md)) |
+| `cast-next` | Marker — all attributes after this are forwarded to child widget |
 
 ## Default URL Template
 
@@ -42,9 +47,23 @@ Override for local development:
 </ims-viewer>
 ```
 
-## Attribute Forwarding (`cast-next`)
+## Hypermedia Navigation
 
-Forward attributes to the dynamically created child widget:
+When `hotspots` is set, the viewer handles hotspot click events:
+
+- **`targetSrcData`** — pushes current state to history, loads new widget + hotspots
+- **`url`** — opens external link
+- **`action`** — calls method on child widget
+
+A **back button** (←) appears when navigation history is non-empty.
+
+```
+spinner.json ──hotspot──▶ pano.json ──hotspot──▶ gallery.json
+                                                       │
+                                          ← back ◀─────┘
+```
+
+## Attribute Forwarding (`cast-next`)
 
 ```html
 <ims-viewer 
@@ -56,19 +75,21 @@ Forward attributes to the dynamically created child widget:
 </ims-viewer>
 ```
 
-All attributes after `cast-next` (`autoplay`, `no-ui`) are set on the child `<ims-spinner>`.
+All attributes after `cast-next` (`autoplay`, `no-ui`) are set on the child widget.
 
 ## Styling
 
-`ims-viewer` uses `display: contents`, making it invisible in the layout. Style the child widget directly:
+Style the viewer container or the child widget directly:
 
 ```css
-ims-viewer > * {
+ims-viewer {
   width: 640px;
   height: 400px;
 }
 ```
 
+Back button uses `--ims-hotspot-bg` and `--ims-hotspot-bg-hover` tokens.
+
 ## Events
 
-See [events.md](./events.md) for standard IMS lifecycle events (emitted by the child widget, not ims-viewer itself).
+Hotspot navigation fires `ims-hotspot-click` (see [hotspots.md](./hotspots.md)). Standard lifecycle events are emitted by the child widget (see [events.md](./events.md)).

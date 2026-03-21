@@ -16,7 +16,7 @@
     "./viewer": "./wgt/viewer/index.js",
     "./model": "./wgt/model/index.js",
     "./audio": "./wgt/audio/index.js",
-    "./story": "./wgt/story/index.js",
+    "./hotspots": "./wgt/hotspots/index.js",
     "./utils/dataToImage": "./lib/dataToImage.js",
     "./utils/imageToData": "./lib/imageToData.js",
     "./plugins/watermark": "./lib/plugins/watermark.js",

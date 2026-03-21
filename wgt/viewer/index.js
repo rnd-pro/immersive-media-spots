@@ -1,52 +1,139 @@
 import Symbiote, { css } from '@symbiotejs/symbiote';
 import { loadSourceData } from '../../lib/loadSourceData.js';
+import '../hotspots/index.js';
 
 export class ImsViewer extends Symbiote {
 
   init$ = {
     urlTpl: 'https://cdn.jsdelivr.net/npm/interactive-media-spots@{{version}}/wgt/{{imsType}}/+esm',
-  }
+    hasHistory: false,
+    onBack: () => this.#goBack(),
+  };
+
+  /** @type {{ srcData: string, hotspots: string }[]} */
+  #history = [];
 
   initCallback() {
     this.sub('srcData', async (srcDataUrl) => {
-      this.innerHTML = '';
       if (!srcDataUrl) return;
+      await this.#loadWidget(srcDataUrl, this.$.hotspots);
+    });
 
-      let srcData = await loadSourceData(srcDataUrl);
-      let overrideVersion = this.getAttribute('version');
-      let urlStr = this.$.urlTpl
-        .replaceAll('{{version}}', overrideVersion || srcData.version || 'latest')
-        .replaceAll('{{imsType}}', srcData.imsType);
-      await import(urlStr);
-      let imsTypeEl = document.createElement(`ims-${srcData.imsType}`);
-      let elAttributes = [...this.attributes];
-      let castAttr = elAttributes.find(attr => attr.name === 'cast-next');
-      if (castAttr) {
-        let castAttrIndex = elAttributes.indexOf(castAttr);
-        elAttributes = elAttributes.slice(castAttrIndex + 1, elAttributes.length);
-        elAttributes.forEach(attr => {
-          imsTypeEl.setAttribute(attr.name, attr.value);
+    this.addEventListener('ims-hotspot-click', (e) => {
+      let detail = /** @type {CustomEvent} */ (e).detail;
+      if (detail.targetSrcData) {
+        this.#history.push({
+          srcData: this.$.srcData,
+          hotspots: this.$.hotspots || '',
         });
+        this.$.hasHistory = true;
+        this.$.hotspots = detail.targetHotspotsData || '';
+        this.$.srcData = detail.targetSrcData;
       }
-      let blob = new Blob([JSON.stringify(srcData)], {  
-        type: 'application/json',
-      });
-      let url = URL.createObjectURL(blob);
-      imsTypeEl.setAttribute('src-data', url);
-      this.appendChild(imsTypeEl);
     });
   }
 
+  /**
+   * @param {string} srcDataUrl
+   * @param {string} [hotspotsUrl]
+   */
+  async #loadWidget(srcDataUrl, hotspotsUrl) {
+    this.innerHTML = '';
+
+    let srcData = await loadSourceData(srcDataUrl);
+    let overrideVersion = this.getAttribute('version');
+    let urlStr = this.$.urlTpl
+      .replaceAll('{{version}}', overrideVersion || srcData.version || 'latest')
+      .replaceAll('{{imsType}}', srcData.imsType);
+    await import(urlStr);
+
+    let imsTypeEl = document.createElement(`ims-${srcData.imsType}`);
+    let elAttributes = [...this.attributes];
+    let castAttr = elAttributes.find(attr => attr.name === 'cast-next');
+    if (castAttr) {
+      let castAttrIndex = elAttributes.indexOf(castAttr);
+      elAttributes = elAttributes.slice(castAttrIndex + 1, elAttributes.length);
+      elAttributes.forEach(attr => {
+        imsTypeEl.setAttribute(attr.name, attr.value);
+      });
+    }
+    let blob = new Blob([JSON.stringify(srcData)], {
+      type: 'application/json',
+    });
+    let url = URL.createObjectURL(blob);
+    imsTypeEl.setAttribute('src-data', url);
+    this.appendChild(imsTypeEl);
+
+    if (hotspotsUrl) {
+      let hotEl = document.createElement('ims-hotspots');
+      hotEl.setAttribute('src-data', hotspotsUrl);
+      imsTypeEl.appendChild(hotEl);
+    }
+
+    if (this.#history.length) {
+      this.#renderBackButton();
+    }
+  }
+
+  #renderBackButton() {
+    let existing = this.querySelector('.ims-viewer-back');
+    if (existing) existing.remove();
+    let btn = document.createElement('button');
+    btn.className = 'ims-viewer-back';
+    btn.textContent = '←';
+    btn.title = 'Back';
+    btn.addEventListener('click', () => this.#goBack());
+    this.appendChild(btn);
+  }
+
+  #goBack() {
+    let prev = this.#history.pop();
+    if (!prev) return;
+    this.$.hasHistory = this.#history.length > 0;
+    this.$.hotspots = prev.hotspots;
+    this.$.srcData = prev.srcData;
+  }
 }
 
 ImsViewer.bindAttributes({
   'src-data': 'srcData',
   'url-template': 'urlTpl',
+  'hotspots': 'hotspots',
 });
 
 ImsViewer.rootStyles = css`
 ims-viewer {
-  display: contents;
+  display: block;
+  position: relative;
+
+  .ims-viewer-back {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 20;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: var(--ims-hotspot-bg, rgba(0, 0, 0, 0.6));
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+
+    &:hover {
+      background: var(--ims-hotspot-bg-hover, rgba(0, 0, 0, 0.8));
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
 }
 `;
 

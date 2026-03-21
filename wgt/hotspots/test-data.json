@@ -1,0 +1,33 @@
+{
+  "imsType": "hotspots",
+  "version": "1.0.0",
+  "spots": [
+    {
+      "id": "detail",
+      "label": "View detail →",
+      "targetSrcData": "../gallery/test-data.json",
+      "x": 0.7,
+      "y": 0.4,
+      "visible": { "frame": [5, 30] },
+      "keyframes": {
+        "5": { "x": 0.65, "y": 0.4 },
+        "15": { "x": 0.7, "y": 0.38 },
+        "30": { "x": 0.75, "y": 0.42 }
+      }
+    },
+    {
+      "id": "buy",
+      "label": "Buy now",
+      "url": "https://example.com/product",
+      "x": 0.5,
+      "y": 0.85
+    },
+    {
+      "id": "info",
+      "label": "More info",
+      "action": "pause",
+      "x": 0.3,
+      "y": 0.6
+    }
+  ]
+}
