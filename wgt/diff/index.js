@@ -47,10 +47,13 @@ class ImsDiff extends ImsBaseClass {
   #loadImages() {
     let total = this.srcData.srcList.length;
     let loaded = 0;
-    this.$.progress = 0;
     this.srcData.srcList.forEach((imgUrl, idx) => {
       let img = this.#images[idx] || new Image();
       if (!this.#images[idx]) {
+        this.#images.push(img);
+        this.$.progress = 0;
+      }
+      if (img.src !== imgUrl) {
         img.onload = () => {
           loaded++;
           this.$.progress = (loaded / total) * 100;
@@ -60,16 +63,19 @@ class ImsDiff extends ImsBaseClass {
             });
           }
         };
-        this.#images.push(img);
+        img.src = imgUrl;
+      } else {
+        loaded++;
       }
-      img.src = imgUrl;
     });
+    if (loaded === total) {
+      this.#redraw();
+    }
   }
 
   onResize() {
     super.onResize();
     this.#loadImages();
-    this.#redraw();
   }
 
   init() {
@@ -100,10 +106,10 @@ class ImsDiff extends ImsBaseClass {
       this.ref.slider.style.display = '';
       if (this.$.isVertical) {
         this.ref.slider.style.left = '';
-        this.ref.slider.style.top = `${this.#share * 100}%`;
+        this.ref.slider.style.top = `${this.#share * this.canvas.clientHeight + this.canvas.offsetTop}px`;
       } else {
         this.ref.slider.style.top = '';
-        this.ref.slider.style.left = `${this.#share * 100}%`;
+        this.ref.slider.style.left = `${this.#share * this.canvas.clientWidth + this.canvas.offsetLeft}px`;
       }
     }
   }
