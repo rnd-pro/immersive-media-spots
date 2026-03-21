@@ -2,11 +2,18 @@ import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
 export class ImsGalleryToolbar extends Symbiote {
-  playStateIcon = 'play';
-  fsStateIcon = 'fs_on';
+
+  init$ = {
+    fsStateIcon: 'fs_on',
+    autoplayIcon: 'play',
+  };
+
   initCallback() {
     this.sub('^fullscreen', (val) => {
       this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
+    });
+    this.sub('^autoplay', (val) => {
+      this.$.autoplayIcon = val ? 'pause' : 'play';
     });
   }
 }
@@ -15,6 +22,7 @@ ImsGalleryToolbar.rootStyles = css`
 ims-gallery-toolbar {
   position: absolute;
   display: inline-flex;
+  align-items: center;
   gap: var(--ims-toolbar-gap, 5px);
   background-color: var(--ims-toolbar-bg, rgba(0, 0, 0, 0.3));
   backdrop-filter: blur(4px);
@@ -31,13 +39,23 @@ ims-gallery-toolbar {
     background-color: var(--ims-toolbar-bg-hover, rgba(0, 0, 0, 0.6));
     box-shadow: var(--ims-toolbar-shadow, 0 2px 4px rgba(0, 0, 0, 0.2));
   }
+
+  [counter] {
+    font-size: 12px;
+    padding: 0 6px;
+    opacity: 0.8;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
 }
 `;
 
 ImsGalleryToolbar.template = html`
-<ims-button ${{onclick: '^onPrev'}} icon="left"></ims-button>
+<ims-button ${{onclick: '^onPrev', '@disabled': '^prevDisabled'}} icon="left"></ims-button>
+<span counter>{{^currentDisplay}} / {{^total}}</span>
+<ims-button ${{onclick: '^onNext', '@disabled': '^nextDisabled'}} icon="right"></ims-button>
+<ims-button ${{onclick: '^toggleAutoplay', '@icon': 'autoplayIcon'}}></ims-button>
 <ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
-<ims-button ${{onclick: '^onNext'}} icon="right"></ims-button>
 `;
 
 ImsGalleryToolbar.reg('ims-gallery-toolbar');

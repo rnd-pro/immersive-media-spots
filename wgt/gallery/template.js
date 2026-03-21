@@ -6,4 +6,5 @@ export const template = html`
 <canvas ref="canvas"></canvas>
 <ims-progress-bar></ims-progress-bar>
 <ims-gallery-toolbar ref="toolbar"></ims-gallery-toolbar>
+<slot></slot>
 `;

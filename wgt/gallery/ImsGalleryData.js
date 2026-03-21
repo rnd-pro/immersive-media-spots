@@ -10,6 +10,11 @@ export class ImsGalleryData {
   variants = [];
   maxVariantName = '';
   dispatchEvents = false;
+  transitionDuration = 300;
+  autoplayInterval = 3000;
+  loop = true;
+  /** @type {String[]} */
+  captions = [];
   /** @type {String[]} */
   cdnIdList = [];
   /** @type {String[]} */

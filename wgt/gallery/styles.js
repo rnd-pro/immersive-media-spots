@@ -20,7 +20,7 @@ export const styles = css`
   }
   
   :host([no-ui]) {
-    ims-spinner-toolbar {
+    ims-gallery-toolbar {
       display: none;
     }
   }
@@ -35,7 +35,6 @@ export const styles = css`
 
   canvas {
     box-sizing: border-box;
-    transition: 0.1s;
     height: 100%;
     width: 100%;
     object-fit: contain;

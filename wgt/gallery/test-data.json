@@ -1,6 +1,6 @@
 {
   "imsType": "gallery",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "hideUi": false,
   "urlTemplate": "https://rnd-pro.com/idn/{UID}/{VARIANT}",
   "variants": [
@@ -18,5 +18,14 @@
     "0af30700-2327-4b33-dd29-2f56c124b900",
     "4a8df1f7-d023-413f-2a12-18d3cde77b00"
   ],
-  "srcList": []
+  "srcList": [],
+  "captions": [
+    "Mountain landscape at sunrise",
+    "Forest canopy from above",
+    "Coastal cliffs and ocean waves",
+    "Desert dunes under moonlight"
+  ],
+  "transitionDuration": 400,
+  "autoplayInterval": 3000,
+  "loop": false
 }
