@@ -36,6 +36,15 @@ export const DIFF_STYLES = css`
     }
   }
 
+  :host([vertical]) div[slider] {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+  }
+
   :host([fullscreen]) {
     position: fixed;
     top: 0;

@@ -2,11 +2,23 @@ import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 
 export class ImsDiffToolbar extends Symbiote {
-  fsStateIcon = 'fs_on';
+
+  init$ = {
+    fsStateIcon: 'fs_on',
+    modeIcon: 'layers',
+    orientIcon: 'horizontal',
+    animIcon: 'play',
+  };
 
   initCallback() {
     this.sub('^fullscreen', (val) => {
       this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
+    });
+    this.sub('^mode', (val) => {
+      this.$.modeIcon = val === 'onion' ? 'layers' : 'compare';
+    });
+    this.sub('^animating', (val) => {
+      this.$.animIcon = val ? 'pause' : 'play';
     });
   }
 }
@@ -31,10 +43,24 @@ ims-diff-toolbar {
     background-color: var(--ims-toolbar-bg-hover, rgba(0, 0, 0, 0.6));
     box-shadow: var(--ims-toolbar-shadow, 0 2px 4px rgba(0, 0, 0, 0.2));
   }
+
+  [pair-nav] {
+    display: contents;
+    &[hidden] {
+      display: none;
+    }
+  }
 }
 `;
 
 ImsDiffToolbar.template = html`
+<ims-button ${{onclick: '^toggleMode', '@icon': 'modeIcon'}}></ims-button>
+<ims-button icon="orientation" ${{onclick: '^toggleOrientation'}}></ims-button>
+<ims-button ${{onclick: '^toggleAnimate', '@icon': 'animIcon'}}></ims-button>
+<span pair-nav ${{'@hidden': '!^hasPairs'}}>
+  <ims-button icon="left" ${{onclick: '^prevPair'}}></ims-button>
+  <ims-button icon="right" ${{onclick: '^nextPair'}}></ims-button>
+</span>
 <ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
 `;
 

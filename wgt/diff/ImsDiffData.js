@@ -12,6 +12,11 @@ export class ImsDiffData {
   dispatchEvents = false;
   startPosition = 50;
   maxVariantName = '';
+  /** @type {'slider' | 'onion'} */
+  mode = 'slider';
+  /** @type {'horizontal' | 'vertical'} */
+  orientation = 'horizontal';
+  animateSpeed = 2000;
   /** @type {String[]} */
   cdnIdList = [];
   /** @type {String[]} */
