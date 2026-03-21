@@ -28,7 +28,8 @@ export class ImsHotspots extends Symbiote {
   }
 
   #render() {
-    this.innerHTML = '';
+    let container = this.shadowRoot;
+    container.querySelectorAll('.spot').forEach((el) => el.remove());
     for (let spot of this.#spotDefs) {
       let el = document.createElement('div');
       el.className = 'spot';
@@ -37,7 +38,7 @@ export class ImsHotspots extends Symbiote {
       el.style.left = `${spot.x * 100}%`;
       el.style.top = `${spot.y * 100}%`;
       el.addEventListener('click', () => this.#onSpotClick(spot));
-      this.appendChild(el);
+      container.appendChild(el);
     }
   }
 
@@ -45,26 +46,14 @@ export class ImsHotspots extends Symbiote {
    * @param {HotspotSpot} spot
    */
   #onSpotClick(spot) {
-    this.dispatchEvent(new CustomEvent('ims-hotspot-click', {
-      bubbles: true,
-      composed: true,
-      detail: spot,
-    }));
+    if (spot.action) {
+      this.$['^' + spot.action]?.();
+    }
+    if (spot.targetSrcData) {
+      this.$['^onHotspotNavigate']?.(spot);
+    }
     if (spot.url) {
       window.open(spot.url, '_blank');
-    }
-    if (spot.action && this.#hostWidget) {
-      let fn = /** @type {any} */ (this.#hostWidget)[spot.action];
-      if (typeof fn === 'function') {
-        fn.call(this.#hostWidget);
-      }
-    }
-    if (spot.emit) {
-      this.dispatchEvent(new CustomEvent(spot.emit, {
-        bubbles: true,
-        composed: true,
-        detail: spot,
-      }));
     }
   }
 
@@ -81,10 +70,11 @@ export class ImsHotspots extends Symbiote {
   #getStateValue() {
     let host = this.#getHostWidget();
     if (!host) return 0;
-    let $ = /** @type {any} */ (host).$;
-    if (!$) return 0;
-    if ($.current !== undefined) return $.current;
-    if ($.currentFrame !== undefined) return $.currentFrame;
+    let h = /** @type {any} */ (host);
+    // Spinner: class getter
+    if (h.currentFrame !== undefined) return h.currentFrame;
+    // Gallery: reactive state
+    if (h.$ && h.$.current !== undefined) return h.$.current;
     return 0;
   }
 
@@ -98,7 +88,7 @@ export class ImsHotspots extends Symbiote {
 
   #updateSpots() {
     let stateVal = this.#getStateValue();
-    let spotEls = this.querySelectorAll('.spot');
+    let spotEls = this.shadowRoot.querySelectorAll('.spot');
     spotEls.forEach((el, i) => {
       let def = this.#spotDefs[i];
       if (!def) return;
@@ -174,11 +164,12 @@ export class ImsHotspots extends Symbiote {
   }
 }
 
-ImsHotspots.rootStyles = styles;
-
 ImsHotspots.bindAttributes({
   'src-data': 'srcData',
 });
+
+ImsHotspots.shadowStyles = styles;
+ImsHotspots.template = html`<slot></slot>`;
 
 ImsHotspots.reg('ims-hotspots');
 

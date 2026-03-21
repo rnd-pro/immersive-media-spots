@@ -2,12 +2,16 @@
   {
     "imports": {
       "@symbiotejs/symbiote": "https://esm.run/@symbiotejs/symbiote",
-      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils"
+      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
+      "@symbiotejs/symbiote/core/devMessages.js": "https://esm.run/@symbiotejs/symbiote/core/devMessages.js"
     }
   }
 </script>
 
-<script>
+<script type="module">
+  import Symbiote from '@symbiotejs/symbiote';
+  import '@symbiotejs/symbiote/core/devMessages.js';
+
   window['__FULLSCREEN_API_UNSUPPORTED_TEST__'] = true;
 </script>
 <script src="../spinner/index.js" type="module"></script>

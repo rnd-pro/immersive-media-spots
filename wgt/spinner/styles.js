@@ -65,7 +65,6 @@ slot {
   transition: 0.2s;
 }
 :host([active]) slot {
-  opacity: 0;
   pointer-events: none;
 }
 `;

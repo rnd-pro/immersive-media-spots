@@ -26,6 +26,12 @@ class ImsSpinner extends ImsBaseClass {
     onZoomOut: () => {
       this.#zoomOut();
     },
+    pause: () => {
+      this.pause();
+    },
+    play: () => {
+      this.play();
+    },
   }
 
   /** @type {HTMLImageElement[]} */

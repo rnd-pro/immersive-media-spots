@@ -8,6 +8,15 @@ export class ImsViewer extends Symbiote {
     urlTpl: 'https://cdn.jsdelivr.net/npm/interactive-media-spots@{{version}}/wgt/{{imsType}}/+esm',
     hasHistory: false,
     onBack: () => this.#goBack(),
+    onHotspotNavigate: (/** @type {HotspotSpot} */ spot) => {
+      this.#history.push({
+        srcData: this.$.srcData,
+        hotspots: this.$.hotspots || '',
+      });
+      this.$.hasHistory = true;
+      this.$.hotspots = spot.targetHotspotsData || '';
+      this.$.srcData = spot.targetSrcData;
+    },
   };
 
   /** @type {{ srcData: string, hotspots: string }[]} */
@@ -17,19 +26,6 @@ export class ImsViewer extends Symbiote {
     this.sub('srcData', async (srcDataUrl) => {
       if (!srcDataUrl) return;
       await this.#loadWidget(srcDataUrl, this.$.hotspots);
-    });
-
-    this.addEventListener('ims-hotspot-click', (e) => {
-      let detail = /** @type {CustomEvent} */ (e).detail;
-      if (detail.targetSrcData) {
-        this.#history.push({
-          srcData: this.$.srcData,
-          hotspots: this.$.hotspots || '',
-        });
-        this.$.hasHistory = true;
-        this.$.hotspots = detail.targetHotspotsData || '';
-        this.$.srcData = detail.targetSrcData;
-      }
     });
   }
 

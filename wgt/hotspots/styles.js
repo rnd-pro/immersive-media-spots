@@ -1,7 +1,7 @@
 import { css } from '@symbiotejs/symbiote';
 
 export const styles = css`
-ims-hotspots {
+:host {
   position: absolute;
   inset: 0;
   pointer-events: none;
