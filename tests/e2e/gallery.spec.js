@@ -43,6 +43,14 @@ test.describe('ims-gallery', () => {
 
   test('nav buttons are enabled when loop is true', async ({ page }) => {
     await page.waitForTimeout(2000);
+    await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-gallery');
+      el.srcData.loop = true;
+      el.goTo(1);
+      el.goTo(0);
+    });
+    await page.waitForTimeout(500);
     let prevBtn = page.locator('ims-gallery ims-gallery-toolbar ims-button').first();
     let nextBtn = page.locator('ims-gallery ims-gallery-toolbar ims-button').nth(1);
     await expect(prevBtn).not.toHaveAttribute('disabled');

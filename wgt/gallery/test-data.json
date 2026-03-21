@@ -27,5 +27,5 @@
   ],
   "transitionDuration": 400,
   "autoplayInterval": 3000,
-  "loop": false
+  "loop": true
 }

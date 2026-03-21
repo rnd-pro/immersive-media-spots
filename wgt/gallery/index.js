@@ -205,6 +205,9 @@ export class ImsGallery extends ImsBaseClass {
     if (!this.srcData.loop) {
       this.$.prevDisabled = this.$.current === 0;
       this.$.nextDisabled = this.$.current >= this.#images.length - 1;
+    } else {
+      this.$.prevDisabled = false;
+      this.$.nextDisabled = false;
     }
   }
 

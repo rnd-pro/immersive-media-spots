@@ -6,13 +6,42 @@ test.describe('ims-viewer', () => {
     await page.waitForSelector('ims-viewer');
   });
 
-  test('renders custom elements', async ({ page }) => {
-    let el = page.locator('ims-viewer').first();
-    await expect(el).toBeVisible();
+  test('renders multiple viewer elements', async ({ page }) => {
+    let count = await page.locator('ims-viewer').count();
+    expect(count).toBeGreaterThanOrEqual(6);
   });
 
-  test('has multiple viewers', async ({ page }) => {
-    let count = await page.locator('ims-viewer').count();
-    expect(count).toBeGreaterThan(0);
+  test('dynamically creates child widget for diff', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').first();
+    await expect(viewer).toBeVisible();
+    let child = viewer.locator('ims-diff');
+    await expect(child).toBeVisible({ timeout: 10000 });
+  });
+
+  test('dynamically creates child widget for spinner', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').nth(1);
+    let child = viewer.locator('ims-spinner');
+    await expect(child).toBeVisible({ timeout: 10000 });
+  });
+
+  test('dynamically creates child widget for gallery', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').nth(2);
+    let child = viewer.locator('ims-gallery');
+    await expect(child).toBeVisible({ timeout: 10000 });
+  });
+
+  test('forwards attributes via cast-next', async ({ page }) => {
+    let spinner = page.locator('ims-viewer').nth(1).locator('ims-spinner');
+    await expect(spinner).toBeVisible({ timeout: 10000 });
+    let autoplay = await spinner.getAttribute('autoplay');
+    expect(autoplay).toBe('true');
+  });
+
+  test('child widget has src-data attribute', async ({ page }) => {
+    let child = page.locator('ims-viewer').first().locator('ims-diff');
+    await expect(child).toBeVisible({ timeout: 10000 });
+    let srcData = await child.getAttribute('src-data');
+    expect(srcData).toBeTruthy();
+    expect(srcData).toContain('blob:');
   });
 });
