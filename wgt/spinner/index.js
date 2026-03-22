@@ -391,10 +391,10 @@ class ImsSpinner extends ImsBaseClass {
     });
 
     window.addEventListener(CURRENT_PLAY_EVENT_NAME, (e) => {
-      if (this.srcData.multiplePlay) {
+      if (this.srcData?.multiplePlay) {
         return;
       }
-      if (e['detail'].uid !== this.#localUid) {
+      if (e['detail'].uid !== this.#localUid && this.#playStatusFlag) {
         this.#showCover();
         this.#playStatusFlag = false;
       }
