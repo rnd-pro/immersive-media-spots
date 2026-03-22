@@ -371,6 +371,23 @@ class ImsSpinner extends ImsBaseClass {
 
   #localUid = UID.generate();
 
+  #storageHandler = (e) => {
+    if (e.key === 'IMS_CURRENT_PLAY' && window.localStorage.getItem('IMS_CURRENT_PLAY') !== this.#localUid) {
+      this.#showCover();
+      this.#playStatusFlag = false;
+    }
+  };
+
+  #currentPlayHandler = (e) => {
+    if (this.srcData?.multiplePlay) {
+      return;
+    }
+    if (e['detail'].uid !== this.#localUid && this.#playStatusFlag) {
+      this.#showCover();
+      this.#playStatusFlag = false;
+    }
+  };
+
   renderCallback() {
 
     this.ref.sensor.onmousedown = this.#moveStartHandler;
@@ -383,22 +400,8 @@ class ImsSpinner extends ImsBaseClass {
       }
     };
 
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'IMS_CURRENT_PLAY' && window.localStorage.getItem('IMS_CURRENT_PLAY') !== this.#localUid) {
-        this.#showCover();
-        this.#playStatusFlag = false;
-      }
-    });
-
-    window.addEventListener(CURRENT_PLAY_EVENT_NAME, (e) => {
-      if (this.srcData?.multiplePlay) {
-        return;
-      }
-      if (e['detail'].uid !== this.#localUid && this.#playStatusFlag) {
-        this.#showCover();
-        this.#playStatusFlag = false;
-      }
-    });
+    window.addEventListener('storage', this.#storageHandler);
+    window.addEventListener(CURRENT_PLAY_EVENT_NAME, this.#currentPlayHandler);
   }
 
   kill() {
@@ -411,6 +414,8 @@ class ImsSpinner extends ImsBaseClass {
     super.destroyCallback();
     this.kill();
     this.#imgArray = [];
+    window.removeEventListener('storage', this.#storageHandler);
+    window.removeEventListener(CURRENT_PLAY_EVENT_NAME, this.#currentPlayHandler);
   }
 }
 

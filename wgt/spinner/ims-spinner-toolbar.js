@@ -3,9 +3,11 @@ export { ImsButton } from '../../lib/ims-button.js';
 import { imsCtxName } from '../../lib/imsCtxName.js';
 
 export class ImsSpinnerToolbar extends Symbiote {
-  playStateIcon = 'play';
-  stopIconDisabled = true;
-  zoomStateIcon = 'zoom_in';
+  init$ = {
+    playStateIcon: 'play',
+    stopIconDisabled: true,
+    zoomStateIcon: 'zoom_in',
+  };
 }
 
 ImsSpinnerToolbar.rootStyles = css`

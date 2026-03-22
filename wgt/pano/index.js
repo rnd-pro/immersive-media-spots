@@ -158,6 +158,15 @@ export class ImsPano extends ImsBaseClass {
   toggleAutoRotate() {
     this.$.onPlayPause();
   }
+
+  destroyCallback() {
+    super.destroyCallback();
+    this.#renderer.setAnimationLoop(null);
+    this.#pano.geometry.dispose();
+    this.#pano.material.map?.dispose();
+    this.#pano.material.dispose();
+    this.#renderer.dispose();
+  }
 }
 
 ImsPano.shadowStyles = styles;
