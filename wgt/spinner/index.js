@@ -59,7 +59,6 @@ class ImsSpinner extends ImsBaseClass {
       this.setAttribute('active', '');
     } else if (this.srcData.autoplay) {
       this.#loadContents(this.srcData, true);
-      this.togglePlay();
     } else {
       this.#showCover();
     }
@@ -210,6 +209,7 @@ class ImsSpinner extends ImsBaseClass {
       window.clearInterval(this.#playInterval);
     }
     this.#playInterval = window.setInterval(() => {
+      if (!this.#imgArray.length) return;
       if (this.currentFrame < this.#imgArray.length - 1 && this.currentFrame > 0) {
         this.currentFrame = this.currentFrame + this._directionStep;
       } else if (this.currentFrame === 0) {

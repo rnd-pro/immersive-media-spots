@@ -18,6 +18,10 @@ export class ImsHotspots extends Symbiote {
   #rafId = 0;
 
   initCallback() {
+    this.hidden = true;
+    this.sub('^ready', (val) => {
+      this.hidden = !val;
+    });
     this.sub('srcData', async (url) => {
       if (!url) return;
       let data = await loadSourceData(url);
