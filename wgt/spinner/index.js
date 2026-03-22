@@ -155,7 +155,7 @@ class ImsSpinner extends ImsBaseClass {
   }
 
   #drawPreviewImage() {
-    let src = this.srcData?.coverUrl || this.srcData?.srcList[this.srcData?.startFrame] || this.srcData?.srcList[0];
+    let src = this.srcData?.coverUrl || this.srcData?.srcList?.[this.srcData?.startFrame] || this.srcData?.srcList?.[0];
     if (!src) {
       return;
     }
