@@ -1,19 +1,16 @@
 import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
+import { imsCtxName } from '../../lib/imsCtxName.js';
 
 export class ImsDiffToolbar extends Symbiote {
 
   init$ = {
-    fsStateIcon: 'fs_on',
     modeIcon: 'layers',
     orientIcon: 'diff_horizontal',
     animIcon: 'play',
   };
 
   initCallback() {
-    this.sub('^fullscreen', (val) => {
-      this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
-    });
     this.sub('^mode', (val) => {
       this.$.modeIcon = val === 'onion' ? 'layers' : 'compare';
     });
@@ -65,7 +62,7 @@ ImsDiffToolbar.template = html`
   <ims-button icon="left" ${{onclick: '^prevPair'}}></ims-button>
   <ims-button icon="right" ${{onclick: '^nextPair'}}></ims-button>
 </span>
-<ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
 `;
 
 ImsDiffToolbar.reg('ims-diff-toolbar');

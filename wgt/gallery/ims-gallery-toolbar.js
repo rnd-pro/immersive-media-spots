@@ -1,17 +1,14 @@
 import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
+import { imsCtxName } from '../../lib/imsCtxName.js';
 
 export class ImsGalleryToolbar extends Symbiote {
 
   init$ = {
-    fsStateIcon: 'fs_on',
     autoplayIcon: 'play',
   };
 
   initCallback() {
-    this.sub('^fullscreen', (val) => {
-      this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
-    });
     this.sub('^autoplay', (val) => {
       this.$.autoplayIcon = val ? 'pause' : 'play';
     });
@@ -55,7 +52,7 @@ ImsGalleryToolbar.template = html`
 <span counter>{{^currentDisplay}} / {{^total}}</span>
 <ims-button ${{onclick: '^onNext', '@disabled': '^nextDisabled'}} icon="right"></ims-button>
 <ims-button ${{onclick: '^toggleAutoplay', '@icon': 'autoplayIcon'}}></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
 `;
 
 ImsGalleryToolbar.reg('ims-gallery-toolbar');

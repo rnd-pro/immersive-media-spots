@@ -1,15 +1,23 @@
-import Symbiote from '@symbiotejs/symbiote';
+import { ImsBaseClass } from '../../lib/ImsBaseClass.js';
 import { template } from './template.js';
 import { shadowCss } from './styles.js';
 import { loadSourceData } from '../../lib/loadSourceData.js';
+import { FullscreenMgr } from '../../lib/FullscreenMgr.js';
+import { ResizeController } from '../../lib/ResizeController.js';
+import { imsCtxName } from '../../lib/imsCtxName.js';
+import '../../lib/globalDataCtx.js';
 import '../hotspots/index.js';
 
-export class ImsViewer extends Symbiote {
+export class ImsViewer extends ImsBaseClass {
 
   init$ = {
     urlTpl: 'https://cdn.jsdelivr.net/npm/interactive-media-spots@{{version}}/wgt/{{imsType}}/+esm',
     hasHistory: false,
+    fullscreen: false,
     onBack: () => this.#goBack(),
+    onFs: () => {
+      this.$[imsCtxName + '/fullscreen'] = !this.$[imsCtxName + '/fullscreen'];
+    },
     onHotspotNavigate: (/** @type {HotspotSpot} */ spot) => {
       this.#history.push({
         srcData: this.$.srcData,
@@ -25,6 +33,21 @@ export class ImsViewer extends Symbiote {
   #history = [];
 
   initCallback() {
+    // Skip super.initCallback() — viewer has its own loading flow
+    FullscreenMgr.init();
+    ResizeController.add(this, () => this.onResize());
+
+    this.sub(imsCtxName + '/fullscreen', (val) => {
+      this.$.fullscreen = val;
+      if (val) {
+        FullscreenMgr.enable(this);
+        this.setAttribute('fullscreen', '');
+      } else {
+        FullscreenMgr.disable();
+        this.removeAttribute('fullscreen');
+      }
+    }, false);
+
     this.sub('srcData', async (srcDataUrl) => {
       if (!srcDataUrl) return;
       await this.#loadWidget(srcDataUrl, this.$.hotspots);
@@ -101,6 +124,10 @@ export class ImsViewer extends Symbiote {
     this.$.hasHistory = this.#history.length > 0;
     this.$.hotspots = prev.hotspots;
     this.$.srcData = prev.srcData;
+  }
+
+  destroyCallback() {
+    ResizeController.remove(this);
   }
 }
 

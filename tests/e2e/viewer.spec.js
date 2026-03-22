@@ -45,6 +45,28 @@ test.describe('ims-viewer', () => {
     await backBtn.click();
     await expect(toolbar).toHaveAttribute('hidden', '', { timeout: 5000 });
   });
+
+  test('fullscreen applies to viewer, not inner widget', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').first();
+    await expect(viewer.locator('ims-spinner')).toBeVisible({ timeout: 10000 });
+
+    await page.evaluate(() => {
+      /** @type {any} */
+      let spinner = document.querySelector('ims-viewer ims-spinner');
+      spinner.$.onFs();
+    });
+
+    await expect(viewer).toHaveAttribute('fullscreen', '');
+    let spinner = viewer.locator('ims-spinner');
+    await expect(spinner).not.toHaveAttribute('fullscreen');
+
+    await page.evaluate(() => {
+      /** @type {any} */
+      let spinner = document.querySelector('ims-viewer ims-spinner');
+      spinner.$.onFs();
+    });
+    await expect(viewer).not.toHaveAttribute('fullscreen');
+  });
 });
 
 test.describe('ims-viewer feed', () => {

@@ -33,11 +33,14 @@ export const shadowCss = css`
   }
 }
 :host([fullscreen]) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  z-index: 999999;
 }
 
 canvas {

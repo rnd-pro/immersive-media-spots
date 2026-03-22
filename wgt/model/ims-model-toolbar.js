@@ -1,15 +1,9 @@
 import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
+import { imsCtxName } from '../../lib/imsCtxName.js';
 
 export class ImsModelToolbar extends Symbiote {
   playStateIcon = 'pause';
-  fsStateIcon = 'fs_on';
-
-  initCallback() {
-    this.sub('^fullscreen', (val) => {
-      this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
-    });
-  }
 }
 
 ImsModelToolbar.rootStyles = css`
@@ -37,7 +31,7 @@ ims-model-toolbar {
 
 ImsModelToolbar.template = html`
 <ims-button ${{onclick: '^onPlayPause', '@icon': 'playStateIcon'}}></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
 `;
 
 ImsModelToolbar.reg('ims-model-toolbar');

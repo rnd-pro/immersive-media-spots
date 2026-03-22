@@ -1,15 +1,9 @@
 import Symbiote, { html, css } from '@symbiotejs/symbiote';
 export { ImsButton } from '../../lib/ims-button.js';
 export { ImsRange } from '../../lib/ims-range.js';
+import { imsCtxName } from '../../lib/imsCtxName.js';
 
 export class ImsVideoToolbar extends Symbiote {
-  fsStateIcon = 'fs_on';
-
-  initCallback() {
-    this.sub('^fullscreen', (val) => {
-      this.$.fsStateIcon = val ? 'fs_off' : 'fs_on';
-    });
-  }
 }
 
 ImsVideoToolbar.rootStyles = css`
@@ -64,7 +58,7 @@ ImsVideoToolbar.template = html`
     ${{onchange: '^onVolChange', '@disabled': '^volumeDisabled', value: '^volumeValue'}}>
   </ims-range>
 
-  <ims-button ${{onclick: '^onFs', '@icon': 'fsStateIcon'}}></ims-button>
+  <ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
 </div>
 `;
 
