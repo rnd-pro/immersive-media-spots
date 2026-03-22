@@ -44,4 +44,25 @@ test.describe('ims-viewer', () => {
     expect(srcData).toBeTruthy();
     expect(srcData).toContain('blob:');
   });
+
+  test('back button appears after hotspot navigation and returns to previous', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').last();
+    await expect(viewer.locator('ims-spinner')).toBeVisible({ timeout: 10000 });
+
+    let originalSrc = await page.evaluate(() => {
+      /** @type {any} */
+      let v = document.querySelectorAll('ims-viewer')[6];
+      let origSrc = v.$.srcData;
+      v.$.onHotspotNavigate({ targetSrcData: '../gallery/test-data.json' });
+      return origSrc;
+    });
+    expect(originalSrc).toBeTruthy();
+
+    let toolbar = viewer.locator('ims-viewer-toolbar');
+    let backBtn = toolbar.locator('ims-button');
+    await expect(backBtn).toBeVisible({ timeout: 5000 });
+
+    await backBtn.click();
+    await expect(toolbar).toHaveAttribute('hidden', '', { timeout: 5000 });
+  });
 });

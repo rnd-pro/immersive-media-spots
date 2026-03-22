@@ -1,4 +1,6 @@
-import Symbiote, { css } from '@symbiotejs/symbiote';
+import Symbiote from '@symbiotejs/symbiote';
+import { template } from './template.js';
+import { shadowCss } from './styles.js';
 import { loadSourceData } from '../../lib/loadSourceData.js';
 import '../hotspots/index.js';
 
@@ -34,6 +36,10 @@ export class ImsViewer extends Symbiote {
    * @param {string} [hotspotsUrl]
    */
   async #loadWidget(srcDataUrl, hotspotsUrl) {
+    let oldWidget = this.querySelector(':scope > *');
+    if (oldWidget) {
+      await this.#fadeOut(oldWidget);
+    }
     this.innerHTML = '';
 
     let srcData = await loadSourceData(srcDataUrl);
@@ -58,6 +64,10 @@ export class ImsViewer extends Symbiote {
     });
     let url = URL.createObjectURL(blob);
     imsTypeEl.setAttribute('src-data', url);
+
+    if (oldWidget) {
+      imsTypeEl.setAttribute('fading-in', '');
+    }
     this.appendChild(imsTypeEl);
 
     if (hotspotsUrl) {
@@ -66,20 +76,23 @@ export class ImsViewer extends Symbiote {
       imsTypeEl.appendChild(hotEl);
     }
 
-    if (this.#history.length) {
-      this.#renderBackButton();
+    if (oldWidget) {
+      requestAnimationFrame(() => {
+        imsTypeEl.removeAttribute('fading-in');
+      });
     }
   }
 
-  #renderBackButton() {
-    let existing = this.querySelector('.ims-viewer-back');
-    if (existing) existing.remove();
-    let btn = document.createElement('button');
-    btn.className = 'ims-viewer-back';
-    btn.textContent = '←';
-    btn.title = 'Back';
-    btn.addEventListener('click', () => this.#goBack());
-    this.appendChild(btn);
+  /**
+   * @param {Element} el
+   * @returns {Promise<void>}
+   */
+  #fadeOut(el) {
+    return new Promise((resolve) => {
+      el.addEventListener('transitionend', () => resolve(), { once: true });
+      el.setAttribute('fading-out', '');
+      setTimeout(resolve, 500);
+    });
   }
 
   #goBack() {
@@ -91,47 +104,14 @@ export class ImsViewer extends Symbiote {
   }
 }
 
+ImsViewer.template = template;
+ImsViewer.shadowStyles = shadowCss;
+
 ImsViewer.bindAttributes({
   'src-data': 'srcData',
   'url-template': 'urlTpl',
   'hotspots': 'hotspots',
 });
-
-ImsViewer.rootStyles = css`
-ims-viewer {
-  display: block;
-  position: relative;
-
-  .ims-viewer-back {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 20;
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    background: var(--ims-hotspot-bg, rgba(0, 0, 0, 0.6));
-    backdrop-filter: blur(4px);
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, transform 0.15s;
-
-    &:hover {
-      background: var(--ims-hotspot-bg-hover, rgba(0, 0, 0, 0.8));
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-  }
-}
-`;
 
 ImsViewer.reg('ims-viewer');
 
