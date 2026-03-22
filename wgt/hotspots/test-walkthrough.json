@@ -6,6 +6,7 @@
       "id": "to-gallery",
       "label": "Gallery →",
       "targetSrcData": "../gallery/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.2,
       "y": 0.3
     },
@@ -13,6 +14,7 @@
       "id": "to-diff",
       "label": "Diff →",
       "targetSrcData": "../diff/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.5,
       "y": 0.3
     },
@@ -20,6 +22,7 @@
       "id": "to-pano",
       "label": "Pano →",
       "targetSrcData": "../pano/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.8,
       "y": 0.3
     },
@@ -27,6 +30,7 @@
       "id": "to-model",
       "label": "3D Model →",
       "targetSrcData": "../model/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.2,
       "y": 0.7
     },
@@ -34,6 +38,7 @@
       "id": "to-video",
       "label": "Video →",
       "targetSrcData": "../video/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.5,
       "y": 0.7
     },
@@ -41,6 +46,7 @@
       "id": "to-audio",
       "label": "Audio →",
       "targetSrcData": "../audio/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.8,
       "y": 0.7
     }

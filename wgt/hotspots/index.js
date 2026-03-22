@@ -73,12 +73,12 @@ export class ImsHotspots extends Symbiote {
   /** @returns {number} */
   #getStateValue() {
     let host = this.#getHostWidget();
-    if (!host) return 0;
+    if (!host || !host.isConnected) return 0;
     let h = /** @type {any} */ (host);
     // Spinner: class getter
     if (h.currentFrame !== undefined) return h.currentFrame;
     // Gallery: reactive state
-    if (h.$ && h.$.current !== undefined) return h.$.current;
+    if (h.localName === 'ims-gallery' && h.$) return h.$.current ?? 0;
     return 0;
   }
 
@@ -165,6 +165,7 @@ export class ImsHotspots extends Symbiote {
 
   destroyCallback() {
     cancelAnimationFrame(this.#rafId);
+    this.#hostWidget = null;
   }
 }
 
