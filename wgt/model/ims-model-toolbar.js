@@ -17,7 +17,7 @@ ims-model-toolbar {
   position: absolute;
   display: inline-flex;
   gap: var(--ims-toolbar-gap, 5px);
-  background-color: var(--ims-toolbar-bg, rgba(0, 0, 0, 0.3));
+  background-color: var(--ims-toolbar-bg, rgba(0, 0, 0, .3));
   backdrop-filter: blur(4px);
   color: var(--color-fg, #fff);
   padding: var(--ims-toolbar-padding, 5px);
