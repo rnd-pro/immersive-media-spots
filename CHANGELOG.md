@@ -29,6 +29,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full-screen display mode
 - Data-to-image steganographic encoding utilities
 - Mobile device compatibility
-
-[Unreleased]: https://github.com/rnd-pro/immersive-media-spots/compare/v0.2.2...HEAD
-[0.2.2]: https://github.com/rnd-pro/immersive-media-spots/releases/tag/v0.2.2
