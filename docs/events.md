@@ -15,7 +15,7 @@ All IMS widgets emit standard lifecycle events via `CustomEvent`. Enable with `d
 ## Usage
 
 ```js
-import { ImsEvents } from 'interactive-media-spots';
+import { ImsEvents } from 'immersive-media-spots';
 
 let spinner = document.querySelector('ims-spinner');
 

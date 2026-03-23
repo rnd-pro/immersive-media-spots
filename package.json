@@ -1,7 +1,7 @@
 {
-  "name": "interactive-media-spots",
+  "name": "immersive-media-spots",
   "version": "1.0.0",
-  "description": "Interactive Media Spots",
+  "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
   "main": "./lib/ImsBaseClass.js",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rnd-pro/interactive-media-spots.git"
+    "url": "https://github.com/rnd-pro/immersive-media-spots.git"
   },
   "scripts": {
     "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",

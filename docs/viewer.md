@@ -35,7 +35,7 @@ With hotspots:
 ## Default URL Template
 
 ```
-https://cdn.jsdelivr.net/npm/interactive-media-spots@{{version}}/wgt/{{imsType}}/+esm
+https://cdn.jsdelivr.net/npm/immersive-media-spots@{{version}}/{{imsType}}/+esm
 ```
 
 Override for local development:

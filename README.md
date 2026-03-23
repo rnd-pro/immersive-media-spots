@@ -1,240 +1,110 @@
-# IMS - Immersive Media Spots
-
-[![npm version](https://badge.fury.io/js/interactive-media-spots.svg)](https://badge.fury.io/js/interactive-media-spots)
+[![npm version](https://badge.fury.io/js/immersive-media-spots.svg)](https://badge.fury.io/js/immersive-media-spots)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A lightweight collection of web components for immersive media visualization.
+# IMS — Immersive Media Spots
 
-## Widgets
+<img src="https://rnd-pro.com/svg/ims/index.svg" width="200" alt="IMS: Immersive Media Spots">
 
-### ims-diff
-An image comparison widget with slider control. Perfect for before/after visualizations.
-```html
-<ims-diff src-data="./diff-data.json"></ims-diff>
-```
+**Simple web components that turn static pages into immersive, interactive media experiences.** Drop a single HTML tag — get a full-featured 360° spinner, panorama viewer, image comparison slider, or video player.
 
-Configuration example:
-```json
-{
-  "imsType": "diff",
-  "version": "<VERSION>",
-  "urlTemplate": "https://your-cdn.com/{UID}/{VARIANT}",
-  "variants": ["320", "640", "860", "1024"],
-  "cdnIdList": ["image1-id", "image2-id"],
-  "filters": ["grayscale(100%)", "none"]
-}
-```
+## ✨ Why IMS?
 
-### ims-gallery
-An interactive image gallery with touch support and fullscreen capabilities.
+- **One tag — one widget.** Just `<ims-viewer src-data="data.json">` and you're done.
+- **Universal.** Works in any stack: vanilla HTML, React, Vue, Angular, Svelte — anything that renders DOM.
+- **Smart loading.** Adaptive resolution based on viewport & DPI, lazy loading via IntersectionObserver, on-demand dependency imports.
+- **Hypermedia navigation.** Link widgets together with interactive hotspots — let users explore 3D products, then dive into 360° interiors, then watch a demo video, all in one seamless flow.
+- **Themeable.** Full CSS custom properties for colors, sizing, and layout. No CSS framework lock-in.
+- **Lightweight.** Built on [Symbiote.js](https://github.com/nicothed/symbiote.js) — each widget loads only what it needs.
 
-```html
-<ims-gallery src-data="./gallery-data.json"></ims-gallery>
-```
+## 🧩 Widgets
 
-### ims-pano
-A 360° panorama viewer with touch/mouse controls and zoom functionality.
+| Widget | Description | Docs |
+|--------|-------------|------|
+| **ims-spinner** | 360° product viewer with frame-by-frame rotation, autoplay, and drag interaction | [→ docs](./docs/spinner.md) |
+| **ims-gallery** | Touch-friendly image gallery with navigation, looping, and fullscreen | [→ docs](./docs/gallery.md) |
+| **ims-diff** | Before/after image comparison with a draggable slider | [→ docs](./docs/diff.md) |
+| **ims-pano** | 360° panorama with inertia-based pan, zoom, and auto-rotation (Three.js) | [→ docs](./docs/pano.md) |
+| **ims-model** | 3D model viewer for GLTF/GLB with orbit controls and auto-rotation (Three.js) | [→ docs](./docs/model.md) |
+| **ims-video** | Video player with HLS adaptive streaming, subtitles, and quality switching | [→ docs](./docs/video.md) |
+| **ims-audio** | Audio player with real-time waveform visualization (Web Audio API) | [→ docs](./docs/audio.md) |
+| **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [→ docs](./docs/hotspots.md) |
+| **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [→ docs](./docs/viewer.md) |
 
-```html
-<ims-pano src-data="./pano-data.json"></ims-pano>
-```
+## 🚀 Quick Start
 
-Configuration example:
-```json
-{
-  "imsType": "pano",
-  "version": "<VERSION>",
-  "autoplay": false,
-  "urlTemplate": "https://your-cdn.com/{UID}/{VARIANT}",
-  "variants": ["640", "1024", "2048"],
-  "cdnIdList": ["panorama-image-id"]
-}
-```
+**1.** Set up [dependencies](./docs/dependencies.md) — add an importmap or install via npm (only Symbiote.js is required; Three.js and hls.js are needed only for the widgets that use them)
 
-### ims-spinner
-A 360° object viewer that supports sequence animation and interactive rotation.
+**2. Load the viewer** (it pulls widget code on demand):
 
 ```html
-<ims-spinner src-data="./spinner-data.json"></ims-spinner>
+<script type="module" src="https://cdn.jsdelivr.net/npm/immersive-media-spots@<VERSION>/viewer/+esm"></script>
 ```
 
-Configuration example:
-```json
-{
-  "imsType": "spinner",
-  "version": "<VERSION>",
-  "autoplay": true,
-  "speed": 50,
-  "showCover": true,
-  "urlTemplate": "https://your-cdn.com/{UID}/{VARIANT}",
-  "variants": ["320", "640", "1024"],
-  "cdnIdList": ["frame1-id", "frame2-id", "..."]
-}
-```
-
-### ims-video
-
-A video player component with HLS support, captions, and customizable controls.
+**3. Use it:**
 
 ```html
-<ims-video src-data="./spinner-data.json"></ims-video>
+<ims-viewer src-data="./product.json"></ims-viewer>
 ```
 
-Configuration example:
-```json
-{
-  "imsType": "video",
-  "version": "<VERSION>",
-  "autoplay": true,
-  "coverUrl": "<COVER_IMAGE_URL>",
-  "showCover": true,
-  "hlsSrc": "<HLS_SOURCE_PATH>",
-  "sources": "<SOURCE_DESCRIPTIONS>",
-  "tracks": []
-}
-```
+That's it. The viewer reads `imsType` from `product.json` and dynamically imports the right widget.
 
+### Direct widget usage
 
-### ims-viewer
-Universal component, that loads dependencies dynamically using CDN with the certain application version support.
+Skip the viewer and load a specific widget directly:
 
 ```html
-<ims-viewer src-data="./spinner-data.json"></ims-viewer>
+<script type="module" src="https://cdn.jsdelivr.net/npm/immersive-media-spots@<VERSION>/spinner/+esm"></script>
+
+<ims-spinner src-data="./data.json" autoplay="true"></ims-spinner>
 ```
 
-### ims-model
+### npm
 
-A 3D model viewer for GLTF/GLB files with orbit controls, auto-rotation, and zoom. Powered by Three.js.
-
-```html
-<ims-model src-data="./model-data.json"></ims-model>
-```
-
-Configuration example:
-```json
-{
-  "imsType": "model",
-  "version": "<VERSION>",
-  "autoplay": true,
-  "fov": 45,
-  "bgColor": "#1a1a2e",
-  "srcList": ["https://example.com/model.glb"]
-}
-```
-
-### ims-audio
-
-An audio player with real-time waveform visualization using the Web Audio API.
-
-```html
-<ims-audio src-data="./audio-data.json"></ims-audio>
-```
-
-Configuration example:
-```json
-{
-  "imsType": "audio",
-  "version": "<VERSION>",
-  "autoplay": false,
-  "loop": true,
-  "waveformColor": "rgba(79, 195, 247, 0.4)",
-  "progressColor": "rgba(79, 195, 247, 0.6)",
-  "srcList": ["https://example.com/track.mp3"]
-}
-```
-
-### ims-story
-
-A sequential media narrative that chains multiple IMS widgets as slides with navigation and captions.
-
-```html
-<ims-story src-data="./story-data.json"></ims-story>
-```
-
-Configuration example:
-```json
-{
-  "imsType": "story",
-  "version": "<VERSION>",
-  "slides": [
-    { "src": "./slide1.json", "caption": "First look" },
-    { "src": "./slide2.json", "caption": "Details" }
-  ]
-}
-```
-
-## Installation & Usage
-
-1. Include the necessary common dependencies via CDN or the files in your project structure:
-```html
-<script type="importmap">
-  {
-    "imports": {
-      "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@3/+esm",
-      "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/+esm",
-      "hls.js": "https://cdn.jsdelivr.net/npm/hls.js@1"
-    }
-  }
-</script>
-```
-
-2. Connect the desired component from CDN or your own built files:
-```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/interactive-media-spots@<VERSION>/wgt/viewer/index.js"></script>
-```
-
-3. (Optional) If you need to use the npm package (Data types, etc), install it:
 ```bash
-npm install interactive-media-spots
+npm install immersive-media-spots
 ```
 
-4. Use the universal tag in your HTML:
+## 🔗 Hypermedia Navigation
+
+Combine `ims-viewer` with `ims-hotspots` to create connected experiences:
+
 ```html
-<ims-viewer src-data="./data.json"></ims-viewer>
-```
-In this case, the component will load dependencies dynamically using CDN with the certain application version support.
-
-Or use the specific content tag. For example:
-```html
-<ims-spinner src-data="./data.json"></ims-spinner>
+<ims-viewer
+  src-data="./exterior-spin.json"
+  url-template="./{{imsType}}/index.js"
+  hotspots="./exterior-hotspots.json">
+</ims-viewer>
 ```
 
-5. You can override the settings for each specific embed using HTML tag attributes.
-```html
-<ims-spinner src-data="./data.json" autoplay="false" speed="100"></ims-spinner>
-```
+Hotspots link widgets together — click a spot on a 360° product to open a detail gallery, then jump to a panoramic interior, all with animated back navigation. [→ Hotspots docs](./docs/hotspots.md)
 
-## Common Features
+## ⚙️ Common Features
 
-All our widgets support:
+All widgets share a base architecture that provides:
 
-- Adaptive content loading to optimize traffic and enhance page loading speed
-- Adaptive DPI support
-- Full-screen display mode
-- Mobile device compatibility
-- Alpha channel support for transparent backgrounds and background settings
-- Easy universal integration using a custom HTML tag, without the need for JavaScript
-- Seamless integration with all modern frameworks: React, Vue, Angular, etc.
-- On-demand dynamic loading of necessary dependencies
-- Simple and effective version management for widgets and required data
-- Direct data encoding within images for use with specialized CDNs
-- JSON for data and configuration transfer, both as static files and via API
-- Ability to override settings for each specific embed using HTML tag attributes
-- Flexible UI customization via standard CSS
-- Compatibility with all popular modern frameworks
-- Autogenerated URLs for used images to facilitate working with CDNs
-- HLS (HTTP Live Streaming) support for video
-- Watermarking for copyright protection
-- Lazy loading with IntersectionObserver
-- Plugin system for extensibility
-- Theming via CSS design tokens
-- Interactive hot spots for linking to other content (Coming soon!)
+- 🎯 **Adaptive loading** — automatically selects the best resolution variant for the viewport and DPI
+- 🔄 **Lazy loading** — `lazy` attribute defers initialization until the element enters the viewport
+- 🖥️ **Fullscreen** — native Fullscreen API with CSS fallback
+- 📱 **Mobile-ready** — touch gestures, responsive sizing, pointer event support
+- 🎨 **CSS theming** — design tokens for toolbar, colors, spacing, and transitions
+- 🔌 **Plugin system** — extend lifecycle hooks with custom plugins
+- 📡 **Events** — standard lifecycle events: `ims-load`, `ims-ready`, `ims-error` ([→ events docs](./docs/events.md))
+- 🏷️ **Attribute overrides** — override any JSON config property via HTML attributes
 
-> IMS is supported by all current versions of popular browsers.
+## 📚 Documentation
 
-## Articles and Demos
+Full per-widget API reference, config schemas, and CSS custom properties:
 
-- [Concept details and live demo](https://rnd-pro.com/pulse/interactive-media-spots/)
+| | | |
+|---|---|---|
+| [Spinner](./docs/spinner.md) | [Gallery](./docs/gallery.md) | [Diff](./docs/diff.md) |
+| [Pano](./docs/pano.md) | [Model](./docs/model.md) | [Video](./docs/video.md) |
+| [Audio](./docs/audio.md) | [Hotspots](./docs/hotspots.md) | [Viewer](./docs/viewer.md) |
+| [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) | |
+
+## 📰 Articles & Demos
+
+- [Concept details and live demo](https://rnd-pro.com/pulse/immersive-media-spots/)
 
 ## Contributing
 

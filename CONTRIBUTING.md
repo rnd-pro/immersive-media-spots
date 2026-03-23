@@ -5,8 +5,8 @@ Thank you for your interest in contributing to Interactive Media Spots!
 ## Development Setup
 
 ```bash
-git clone https://github.com/rnd-pro/interactive-media-spots.git
-cd interactive-media-spots
+git clone https://github.com/rnd-pro/immersive-media-spots.git
+cd immersive-media-spots
 npm install
 ```
 

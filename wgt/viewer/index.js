@@ -11,7 +11,7 @@ import '../hotspots/index.js';
 export class ImsViewer extends ImsBaseClass {
 
   init$ = {
-    urlTpl: 'https://cdn.jsdelivr.net/npm/interactive-media-spots@{{version}}/wgt/{{imsType}}/+esm',
+    urlTpl: 'https://cdn.jsdelivr.net/npm/immersive-media-spots@{{version}}/{{imsType}}/+esm',
     hasHistory: false,
     fullscreen: false,
     onBack: () => this.#goBack(),
