@@ -20,15 +20,15 @@
 
 | Widget | Description | Docs |
 |--------|-------------|------|
-| **ims-spinner** | 360° product viewer with frame-by-frame rotation, autoplay, and drag interaction | [→ docs](./docs/spinner.md) |
-| **ims-gallery** | Touch-friendly image gallery with navigation, looping, and fullscreen | [→ docs](./docs/gallery.md) |
-| **ims-diff** | Before/after image comparison with a draggable slider | [→ docs](./docs/diff.md) |
-| **ims-pano** | 360° panorama with inertia-based pan, zoom, and auto-rotation (Three.js) | [→ docs](./docs/pano.md) |
-| **ims-model** | 3D model viewer for GLTF/GLB with orbit controls and auto-rotation (Three.js) | [→ docs](./docs/model.md) |
-| **ims-video** | Video player with HLS adaptive streaming, subtitles, and quality switching | [→ docs](./docs/video.md) |
-| **ims-audio** | Audio player with real-time waveform visualization (Web Audio API) | [→ docs](./docs/audio.md) |
-| **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [→ docs](./docs/hotspots.md) |
-| **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [→ docs](./docs/viewer.md) |
+| **ims-spinner** | 360° product viewer with frame-by-frame rotation, autoplay, and drag interaction | [docs](./docs/spinner.md) |
+| **ims-gallery** | Touch-friendly image gallery with navigation, looping, and fullscreen | [docs](./docs/gallery.md) |
+| **ims-diff** | Before/after image comparison with a draggable slider | [docs](./docs/diff.md) |
+| **ims-pano** | 360° panorama with inertia-based pan, zoom, and auto-rotation (Three.js) | [docs](./docs/pano.md) |
+| **ims-model** | 3D model viewer for GLTF/GLB with orbit controls and auto-rotation (Three.js) | [docs](./docs/model.md) |
+| **ims-video** | Video player with HLS adaptive streaming, subtitles, and quality switching | [docs](./docs/video.md) |
+| **ims-audio** | Audio player with real-time waveform visualization (Web Audio API) | [docs](./docs/audio.md) |
+| **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [docs](./docs/hotspots.md) |
+| **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [docs](./docs/viewer.md) |
 
 ## 🚀 Quick Start
 
