@@ -15,7 +15,7 @@ export const styles = css`
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 6px 10px;
   border-radius: 20px;
   background: var(--ims-hotspot-bg, rgba(0, 0, 0, 0.6));
   backdrop-filter: blur(4px);
