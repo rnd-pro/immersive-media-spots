@@ -37,6 +37,7 @@ export class ImsHotspots extends Symbiote {
     for (let spot of this.#spotDefs) {
       let el = document.createElement('div');
       el.className = 'spot';
+      el.part = 'spot';
       el.dataset.id = spot.id;
       el.textContent = spot.label || '';
       el.style.left = `${spot.x * 100}%`;
