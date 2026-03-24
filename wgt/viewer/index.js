@@ -34,20 +34,7 @@ export class ImsViewer extends ImsBaseClass {
 
   initCallback() {
     // Skip super.initCallback() — viewer has its own loading flow
-    FullscreenMgr.init();
     ResizeController.add(this, () => this.onResize());
-
-    this.sub(imsCtxName + '/fullscreen', (val) => {
-      this.$.fullscreen = val;
-      if (val) {
-        FullscreenMgr.enable(this);
-        this.setAttribute('fullscreen', '');
-      } else {
-        FullscreenMgr.disable();
-        this.removeAttribute('fullscreen');
-      }
-    }, false);
-
     this.sub('srcData', async (srcDataUrl) => {
       if (!srcDataUrl) return;
       await this.#loadWidget(srcDataUrl, this.$.hotspots);
