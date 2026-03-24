@@ -1,6 +1,5 @@
 {
   "imsType": "gallery",
-  "version": "1.0.0",
   "hideUi": false,
   "urlTemplate": "https://rnd-pro.com/idn/{UID}/{VARIANT}",
   "variants": [
