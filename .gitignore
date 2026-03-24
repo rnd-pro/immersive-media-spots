@@ -19,6 +19,8 @@ dist
 env
 test
 test-results
+cit-config.json
+cit
 
 ## Cloud Images Toolkit
 cit/cit-store/
