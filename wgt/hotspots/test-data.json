@@ -18,6 +18,7 @@
     {
       "id": "buy",
       "label": "Buy now",
+      "color": "#f40",
       "url": "https://example.com/product",
       "x": 0.5,
       "y": 0.85

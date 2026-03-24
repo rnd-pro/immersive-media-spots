@@ -37,9 +37,8 @@ export const styles = css`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--ims-accent, #08f);
+    background: var(--spot-accent, var(--ims-accent, #08f));
     flex-shrink: 0;
-    box-shadow: 0 0 6px var(--ims-accent, #08f);
   }
 
   &:hover {

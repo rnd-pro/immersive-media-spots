@@ -42,6 +42,9 @@ export class ImsHotspots extends Symbiote {
       el.textContent = spot.label || '';
       el.style.left = `${spot.x * 100}%`;
       el.style.top = `${spot.y * 100}%`;
+      if (spot.color) {
+        el.style.setProperty('--spot-accent', spot.color);
+      }
       el.addEventListener('click', () => this.#onSpotClick(spot));
       container.appendChild(el);
     }

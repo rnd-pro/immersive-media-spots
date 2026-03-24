@@ -32,6 +32,7 @@ Or managed automatically by `ims-viewer`:
     {
       "id": "interior",
       "label": "See interior →",
+      "color": "#f40",
       "targetSrcData": "../pano/test-data.json",
       "targetHotspotsData": "../pano/pano-hotspots.json",
       "x": 0.7,
@@ -55,6 +56,7 @@ Or managed automatically by `ims-viewer`:
 | `label` | `string` | Display text |
 | `x` | `number` | Normalized x position (0…1) |
 | `y` | `number` | Normalized y position (0…1) |
+| `color` | `string` | Override mark dot color (any CSS color value) |
 | `targetSrcData` | `string` | Navigate to another IMS widget (viewer handles this) |
 | `targetHotspotsData` | `string` | Hotspot config for the target widget |
 | `url` | `string` | Open external URL |
@@ -110,7 +112,9 @@ Keys = frame/image index or seconds. Positions interpolate linearly.
 | `--ims-hotspot-bg-hover` | `rgba(0,0,0,0.8)` | Hover background |
 | `--ims-hotspot-color` | `#fff` | Text color |
 | `--ims-hotspot-font-size` | `13px` | Label font size |
-| `--ims-accent` | `#08f` | Indicator dot color |
+| `--ims-accent` | `#08f` | Indicator dot color (global) |
+
+Per-spot `color` property overrides `--ims-accent` for individual spots.
 
 ## Events
 

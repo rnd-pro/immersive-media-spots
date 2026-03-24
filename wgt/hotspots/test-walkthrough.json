@@ -5,6 +5,7 @@
     {
       "id": "to-gallery",
       "label": "Gallery →",
+      "color": "#f00",
       "targetSrcData": "../gallery/test-data.json",
       "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.2,
@@ -13,6 +14,7 @@
     {
       "id": "to-diff",
       "label": "Diff →",
+      "color": "#0f0",
       "targetSrcData": "../diff/test-data.json",
       "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.5,
@@ -29,6 +31,7 @@
     {
       "id": "to-model",
       "label": "3D Model →",
+      "color": "#ff0",
       "targetSrcData": "../model/test-data.json",
       "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.2,

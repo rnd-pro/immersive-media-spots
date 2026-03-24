@@ -93,6 +93,7 @@ interface HotspotSpot {
   label: string;
   x: number;
   y: number;
+  color?: string;
   targetSrcData?: string;
   targetHotspotsData?: string;
   url?: string;
