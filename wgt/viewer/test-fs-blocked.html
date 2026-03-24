@@ -1,0 +1,42 @@
+<script type="importmap">
+  {
+    "imports": {
+      "@symbiotejs/symbiote": "https://esm.run/@symbiotejs/symbiote",
+      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
+      "@symbiotejs/symbiote/core/devMessages.js": "https://esm.run/@symbiotejs/symbiote/core/devMessages.js",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/+esm",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "hls.js/dist/hls.mjs": "https://cdn.jsdelivr.net/npm/hls.js@1.5.18/+esm"
+    }
+  }
+</script>
+ 
+<script type="module">
+  import '@symbiotejs/symbiote/core/devMessages.js';
+  window['__FULLSCREEN_API_UNSUPPORTED_TEST__'] = true;
+</script>
+<script src="./index.js" type="module"></script>
+
+<style>
+  .transform-wrapper {
+    transform: translate(0);
+  }
+  ims-viewer {
+    width: 640px;
+    height: 400px;
+    > * {
+      width: 100%;
+      height: 100%;
+      background-color: #ccc;
+      border: 1px dashed rgba(0, 0, 0, .2);
+    }
+  }
+</style>
+
+<h2>Viewer — CSS Fullscreen Fallback Blocked</h2>
+<p>FS API disabled + transform wrapper = FS button should be hidden</p>
+<div class="transform-wrapper">
+  <ims-viewer 
+    src-data="../spinner/test-data.json"
+    url-template="../{{imsType}}/index.js"></ims-viewer>
+</div>

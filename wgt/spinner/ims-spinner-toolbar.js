@@ -36,7 +36,7 @@ ImsSpinnerToolbar.template = html`
 <ims-button ${{onclick: '^onStop', '@disabled': 'stopIconDisabled'}} icon="stop"></ims-button>
 <ims-button ${{onclick: '^onZoomIn'}} icon="zoom_in"></ims-button>
 <ims-button ${{onclick: '^onZoomOut'}} icon="zoom_out"></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 `;
 
 ImsSpinnerToolbar.reg('ims-spinner-toolbar');

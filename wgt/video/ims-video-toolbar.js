@@ -58,7 +58,7 @@ ImsVideoToolbar.template = html`
     ${{onchange: '^onVolChange', '@disabled': '^volumeDisabled', value: '^volumeValue'}}>
   </ims-range>
 
-  <ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+  <ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 </div>
 `;
 

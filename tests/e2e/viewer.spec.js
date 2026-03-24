@@ -67,6 +67,32 @@ test.describe('ims-viewer', () => {
     });
     await expect(viewer).not.toHaveAttribute('fullscreen');
   });
+
+  test('hides FS button when API unsupported and CSS fallback blocked by transform', async ({ page }) => {
+    await page.goto('/wgt/viewer/test-fs-blocked.html');
+    let viewer = page.locator('ims-viewer').first();
+    let spinner = viewer.locator('ims-spinner');
+    await expect(spinner).toBeVisible({ timeout: 10000 });
+
+    let toolbar = spinner.locator('ims-spinner-toolbar');
+    await expect(toolbar).toBeVisible({ timeout: 5000 });
+
+    let fsBtn = toolbar.locator('ims-button').last();
+    await expect(fsBtn).toHaveAttribute('hidden', '');
+  });
+
+  test('shows FS button when API unsupported but CSS fallback is safe', async ({ page }) => {
+    let viewer = page.locator('ims-viewer').first();
+    let spinner = viewer.locator('ims-spinner');
+    await expect(spinner).toBeVisible({ timeout: 10000 });
+
+    let toolbar = spinner.locator('ims-spinner-toolbar');
+    await expect(toolbar).toBeVisible({ timeout: 5000 });
+
+    // No blocking ancestors — FS button should remain visible
+    let fsBtn = toolbar.locator('ims-button').last();
+    await expect(fsBtn).not.toHaveAttribute('hidden');
+  });
 });
 
 test.describe('ims-viewer feed', () => {

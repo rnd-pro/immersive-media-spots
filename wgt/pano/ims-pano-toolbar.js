@@ -31,7 +31,7 @@ ims-pano-toolbar {
 
 ImsPanoToolbar.template = html`
 <ims-button ${{onclick: '^onPlayPause', '@icon': 'playStateIcon'}}></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 `;
 
 ImsPanoToolbar.reg('ims-pano-toolbar');

@@ -31,7 +31,7 @@ ims-model-toolbar {
 
 ImsModelToolbar.template = html`
 <ims-button ${{onclick: '^onPlayPause', '@icon': 'playStateIcon'}}></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 `;
 
 ImsModelToolbar.reg('ims-model-toolbar');

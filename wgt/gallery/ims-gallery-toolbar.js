@@ -52,7 +52,7 @@ ImsGalleryToolbar.template = html`
 <span counter>{{^currentDisplay}} / {{^total}}</span>
 <ims-button ${{onclick: '^onNext', '@disabled': '^nextDisabled'}} icon="right"></ims-button>
 <ims-button ${{onclick: '^toggleAutoplay', '@icon': 'autoplayIcon'}}></ims-button>
-<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 `;
 
 ImsGalleryToolbar.reg('ims-gallery-toolbar');

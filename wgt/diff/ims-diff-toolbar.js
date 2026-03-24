@@ -62,7 +62,7 @@ ImsDiffToolbar.template = html`
   <ims-button icon="left" ${{onclick: '^prevPair'}}></ims-button>
   <ims-button icon="right" ${{onclick: '^nextPair'}}></ims-button>
 </span>
-<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`}}></ims-button>
+<ims-button ${{onclick: '^onFs', '@icon': `${imsCtxName}/fsStateIcon`, '@hidden': `${imsCtxName}/fsHideUnsupported`}}></ims-button>
 `;
 
 ImsDiffToolbar.reg('ims-diff-toolbar');

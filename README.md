@@ -100,7 +100,7 @@ Full per-widget API reference, config schemas, and CSS custom properties:
 | [Spinner](./docs/spinner.md) | [Gallery](./docs/gallery.md) | [Diff](./docs/diff.md) |
 | [Pano](./docs/pano.md) | [Model](./docs/model.md) | [Video](./docs/video.md) |
 | [Audio](./docs/audio.md) | [Hotspots](./docs/hotspots.md) | [Viewer](./docs/viewer.md) |
-| [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) | |
+| [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) | [Fullscreen](./docs/fullscreen.md) |
 
 ## 📰 Articles & Demos
 
