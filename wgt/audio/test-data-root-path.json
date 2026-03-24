@@ -2,7 +2,7 @@
   "imsType": "audio",
   "autoplay": false,
   "loop": false,
-  "waveformColor": "rgba(79, 195, 247, 0.4)",
+  "waveformColor": "#000",
   "progressColor": "rgba(79, 195, 247, 0.6)",
-  "srcList": ["../wgt/audio/test-audio.wav"]
+  "srcList": ["../audio/test-audio.wav"]
 }

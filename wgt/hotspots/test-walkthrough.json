@@ -45,7 +45,7 @@
     {
       "id": "to-audio",
       "label": "Audio →",
-      "targetSrcData": "../audio/test-data.json",
+      "targetSrcData": "../audio/test-data-root-path.json",
       "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.8,
       "y": 0.7
