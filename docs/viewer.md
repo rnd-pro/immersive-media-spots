@@ -90,6 +90,13 @@ ims-viewer {
 
 Back button uses `--ims-hotspot-bg` and `--ims-hotspot-bg-hover` tokens.
 
+## Public API
+
+| Method | Description |
+|---|---|
+| `goBack()` | Navigate to the previous view in the history stack |
+| `goHome()` | Navigate to the initial (first) view, clearing all history |
+
 ## Events
 
 Hotspot navigation fires `ims-hotspot-click` (see [hotspots.md](./hotspots.md)). Standard lifecycle events are emitted by the child widget (see [events.md](./events.md)).
