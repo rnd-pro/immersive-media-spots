@@ -2,7 +2,6 @@ import { ImsBaseClass } from '../../lib/ImsBaseClass.js';
 import { template } from './template.js';
 import { shadowCss } from './styles.js';
 import { loadSourceData } from '../../lib/loadSourceData.js';
-import { FullscreenMgr } from '../../lib/FullscreenMgr.js';
 import { ResizeController } from '../../lib/ResizeController.js';
 import { imsCtxName } from '../../lib/imsCtxName.js';
 import '../../lib/globalDataCtx.js';
@@ -14,7 +13,8 @@ export class ImsViewer extends ImsBaseClass {
     urlTpl: 'https://cdn.jsdelivr.net/npm/immersive-media-spots@{{version}}/{{imsType}}/+esm',
     hasHistory: false,
     fullscreen: false,
-    onBack: () => this.#goBack(),
+    onBack: () => this.goBack(),
+    onHome: () => this.goHome(),
     onFs: () => {
       this.$[imsCtxName + '/fullscreen'] = !this.$[imsCtxName + '/fullscreen'];
     },
@@ -105,12 +105,21 @@ export class ImsViewer extends ImsBaseClass {
     });
   }
 
-  #goBack() {
+  goBack() {
     let prev = this.#history.pop();
     if (!prev) return;
     this.$.hasHistory = this.#history.length > 0;
     this.$.hotspots = prev.hotspots;
     this.$.srcData = prev.srcData;
+  }
+
+  goHome() {
+    if (!this.#history.length) return;
+    let first = this.#history[0];
+    this.#history.length = 0;
+    this.$.hasHistory = false;
+    this.$.hotspots = first.hotspots;
+    this.$.srcData = first.srcData;
   }
 
   destroyCallback() {

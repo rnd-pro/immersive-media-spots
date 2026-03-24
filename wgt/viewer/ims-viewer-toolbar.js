@@ -33,6 +33,7 @@ ims-viewer-toolbar {
 
 ImsViewerToolbar.template = html`
 <ims-button ${{onclick: '^onBack'}} icon="arrow_left"></ims-button>
+<ims-button ${{onclick: '^onHome'}} icon="home"></ims-button>
 `;
 
 ImsViewerToolbar.reg('ims-viewer-toolbar');

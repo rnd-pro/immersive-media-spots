@@ -39,7 +39,7 @@ test.describe('ims-viewer', () => {
     expect(originalSrc).toBeTruthy();
 
     let toolbar = viewer.locator('ims-viewer-toolbar');
-    let backBtn = toolbar.locator('ims-button');
+    let backBtn = toolbar.locator('ims-button[icon="arrow_left"]');
     await expect(backBtn).toBeVisible({ timeout: 5000 });
 
     await backBtn.click();
