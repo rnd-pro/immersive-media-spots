@@ -73,6 +73,23 @@ interface ImsAudioData extends ImsBaseData {
   progressColor?: string;
 }
 
+
+interface ImsMapMarker {
+  lat: number;
+  lng: number;
+  label?: string;
+}
+
+interface ImsMapData extends ImsBaseData {
+  imsType: 'map';
+  center?: [number, number];
+  zoom?: number;
+  minZoom?: number;
+  maxZoom?: number;
+  tileUrl?: string;
+  markers?: ImsMapMarker[];
+}
+
 // --- Hotspots Data Types ---
 
 interface HotspotVisibility {
@@ -109,7 +126,7 @@ interface ImsHotspotsData {
   spots: HotspotSpot[];
 }
 
-type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData | ImsHotspotsData;
+type ImsData = ImsDiffData | ImsGalleryData | ImsPanoData | ImsSpinnerData | ImsVideoData | ImsModelData | ImsAudioData | ImsMapData | ImsHotspotsData;
 
 // --- Events ---
 

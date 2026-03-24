@@ -25,6 +25,6 @@
   },
   "include": [
     "**/*.js",
-    "types/globals.d.ts"
+    "types/*.d.ts"
   ]
 }

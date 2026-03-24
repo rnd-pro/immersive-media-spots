@@ -1,0 +1,11 @@
+{
+  "imsType": "map",
+  "center": [-34.6037, -58.3816],
+  "zoom": 13,
+  "tileUrl": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  "markers": [
+    { "lat": -34.6037, "lng": -58.3816, "label": "Buenos Aires" },
+    { "lat": -34.6083, "lng": -58.3712, "label": "Casa Rosada" },
+    { "lat": -34.6345, "lng": -58.4016, "label": "La Bombonera" }
+  ]
+}

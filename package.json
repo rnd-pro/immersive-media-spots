@@ -1,6 +1,6 @@
 {
   "name": "immersive-media-spots",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
@@ -16,6 +16,7 @@
     "./viewer": "./wgt/viewer/index.js",
     "./model": "./wgt/model/index.js",
     "./audio": "./wgt/audio/index.js",
+    "./map": "./wgt/map/index.js",
     "./hotspots": "./wgt/hotspots/index.js",
     "./utils/dataToImage": "./lib/dataToImage.js",
     "./utils/imageToData": "./lib/imageToData.js",
@@ -53,6 +54,7 @@
   "dependencies": {
     "@symbiotejs/symbiote": "^3.5.7",
     "hls.js": "^1.5.18",
+    "leaflet": "^2.0.0-alpha.1",
     "three": "^0.171.0"
   }
 }

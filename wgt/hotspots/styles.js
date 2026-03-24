@@ -5,7 +5,7 @@ export const styles = css`
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .spot {

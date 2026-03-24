@@ -51,6 +51,15 @@
       "targetHotspotsData": "../hotspots/test-walkthrough.json",
       "x": 0.8,
       "y": 0.7
+    },
+    {
+      "id": "to-map",
+      "label": "Map →",
+      "color": "#0af",
+      "targetSrcData": "../map/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json",
+      "x": 0.35,
+      "y": 0.9
     }
   ]
 }
