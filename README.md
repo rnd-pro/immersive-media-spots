@@ -27,7 +27,7 @@
 | **ims-model** | 3D model viewer for GLTF/GLB with orbit controls and auto-rotation (Three.js) | [docs](./docs/model.md) |
 | **ims-video** | Video player with HLS adaptive streaming, subtitles, and quality switching | [docs](./docs/video.md) |
 | **ims-audio** | Audio player with real-time waveform visualization (Web Audio API) | [docs](./docs/audio.md) |
-| **ims-map** | Interactive map with markers, popups, and toolbar integration (Leaflet.js) | [docs](./docs/map.md) |
+| **ims-map** | Interactive map with markers | [docs](./docs/map.md) |
 | **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [docs](./docs/hotspots.md) |
 | **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [docs](./docs/viewer.md) |
 
