@@ -3,7 +3,7 @@
 
 # IMS — Immersive Media Spots
 
-<img src="https://rnd-pro.com/svg/ims/index.svg" width="200" alt="IMS: Immersive Media Spots">
+<img src="https://rnd-pro.com/svg/ims/index.svg?v=1" width="200" alt="IMS: Immersive Media Spots">
 
 **Simple web components that turn static pages into immersive, interactive media experiences.** Drop a single HTML tag — get a full-featured 360° spinner, panorama viewer, image comparison slider, or video player.
 
