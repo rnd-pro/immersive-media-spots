@@ -27,6 +27,7 @@
 | **ims-model** | 3D model viewer for GLTF/GLB with orbit controls and auto-rotation (Three.js) | [docs](./docs/model.md) |
 | **ims-video** | Video player with HLS adaptive streaming, subtitles, and quality switching | [docs](./docs/video.md) |
 | **ims-audio** | Audio player with real-time waveform visualization (Web Audio API) | [docs](./docs/audio.md) |
+| **ims-map** | Interactive map with markers, popups, and toolbar integration (Leaflet.js) | [docs](./docs/map.md) |
 | **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [docs](./docs/hotspots.md) |
 | **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [docs](./docs/viewer.md) |
 
@@ -47,6 +48,23 @@
 ```
 
 That's it. The viewer reads `imsType` from `product.json` and dynamically imports the right widget.
+
+### 📌 Version pinning
+
+Every data JSON can include a `version` field that locks the widget import to an exact library release. This guarantees that previously published pages keep working even after new IMS versions are released with breaking changes.
+
+```jsonc
+// product.json
+{ "imsType": "spinner", "version": "1.4.2", ... }
+```
+
+The viewer resolves the CDN URL as `immersive-media-spots@1.4.2/spinner/+esm`. You can also override the version via the HTML attribute:
+
+```html
+<ims-viewer src-data="./product.json" version="1.4.2"></ims-viewer>
+```
+
+If neither is set, `latest` is used. For production deployments, always pin the version in your data files.
 
 ### Direct widget usage
 
@@ -87,7 +105,7 @@ All widgets share a base architecture that provides:
 - 🖥️ **Fullscreen** — native Fullscreen API with CSS fallback
 - 📱 **Mobile-ready** — touch gestures, responsive sizing, pointer event support
 - 🎨 **CSS theming** — design tokens for toolbar, colors, spacing, and transitions
-- 🔌 **Plugin system** — extend lifecycle hooks with custom plugins
+- 🔌 **Plugin system** — extend lifecycle hooks with custom plugins ([→ plugins docs](./docs/plugins.md))
 - 📡 **Events** — standard lifecycle events: `ims-load`, `ims-ready`, `ims-error` ([→ events docs](./docs/events.md))
 - 🏷️ **Attribute overrides** — override any JSON config property via HTML attributes
 
@@ -99,8 +117,9 @@ Full per-widget API reference, config schemas, and CSS custom properties:
 |---|---|---|
 | [Spinner](./docs/spinner.md) | [Gallery](./docs/gallery.md) | [Diff](./docs/diff.md) |
 | [Pano](./docs/pano.md) | [Model](./docs/model.md) | [Video](./docs/video.md) |
-| [Audio](./docs/audio.md) | [Hotspots](./docs/hotspots.md) | [Viewer](./docs/viewer.md) |
-| [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) | [Fullscreen](./docs/fullscreen.md) |
+| [Audio](./docs/audio.md) | [Map](./docs/map.md) | [Hotspots](./docs/hotspots.md) |
+| [Viewer](./docs/viewer.md) | [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) |
+| [Fullscreen](./docs/fullscreen.md) | [Plugins](./docs/plugins.md) | |
 
 ## 📰 Articles & Demos
 
