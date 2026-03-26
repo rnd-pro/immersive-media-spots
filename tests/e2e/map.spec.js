@@ -12,8 +12,12 @@ test.describe('ims-map', () => {
   });
 
   test('has map container', async ({ page }) => {
-    let container = page.locator('ims-map [ref="mapContainer"]');
-    await expect(container).toBeVisible();
+    await page.waitForSelector('ims-map[active]', { timeout: 10000 });
+    let hasContainer = await page.evaluate(() => {
+      let el = document.querySelector('ims-map');
+      return !!el?.shadowRoot?.querySelector('.leaflet-container');
+    });
+    expect(hasContainer).toBe(true);
   });
 
   test('toolbar is visible', async ({ page }) => {

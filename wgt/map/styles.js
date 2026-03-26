@@ -43,4 +43,25 @@ export const styles = css`
     width: 100%;
     height: 100%;
   }
+
+  .ims-map-pin {
+    background: none !important;
+    border: none !important;
+  }
+
+  .ims-map-popup-label {
+    margin-bottom: 4px;
+  }
+
+  .ims-map-popup-action {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-accent, #0078d4);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;

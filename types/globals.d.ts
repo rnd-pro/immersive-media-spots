@@ -78,6 +78,12 @@ interface ImsMapMarker {
   lat: number;
   lng: number;
   label?: string;
+  color?: string;
+  url?: string;
+  targetSrcData?: string;
+  targetHotspotsData?: string;
+  action?: string;
+  api?: Record<string, any>;
 }
 
 interface ImsMapData extends ImsBaseData {

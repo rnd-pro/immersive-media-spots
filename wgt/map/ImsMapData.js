@@ -11,7 +11,7 @@ export class ImsMapData {
   minZoom = 1;
   maxZoom = 18;
   tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-  /** @type {{ lat: number, lng: number, label?: string }[]} */
+  /** @type {ImsMapMarker[]} */
   markers = [];
 
   /**

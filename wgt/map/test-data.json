@@ -4,8 +4,57 @@
   "zoom": 13,
   "tileUrl": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   "markers": [
-    { "lat": -34.6037, "lng": -58.3816, "label": "Buenos Aires" },
-    { "lat": -34.6083, "lng": -58.3712, "label": "Casa Rosada" },
-    { "lat": -34.6345, "lng": -58.4016, "label": "La Bombonera" }
+    {
+      "lat": -34.6037,
+      "lng": -58.3816,
+      "label": "Gallery →",
+      "color": "#f00",
+      "targetSrcData": "../gallery/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.6083,
+      "lng": -58.3712,
+      "label": "Diff →",
+      "color": "#0f0",
+      "targetSrcData": "../diff/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.6345,
+      "lng": -58.4016,
+      "label": "Pano →",
+      "targetSrcData": "../pano/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.5906,
+      "lng": -58.3932,
+      "label": "3D Model →",
+      "color": "#ff0",
+      "targetSrcData": "../model/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.6158,
+      "lng": -58.4333,
+      "label": "Video →",
+      "targetSrcData": "../video/test-data.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.5875,
+      "lng": -58.3697,
+      "label": "Audio →",
+      "targetSrcData": "../audio/test-data-root-path.json",
+      "targetHotspotsData": "../hotspots/test-walkthrough.json"
+    },
+    {
+      "lat": -34.6118,
+      "lng": -58.3643,
+      "label": "Wikipedia",
+      "color": "#0af",
+      "url": "https://en.wikipedia.org/wiki/Buenos_Aires"
+    }
   ]
 }
