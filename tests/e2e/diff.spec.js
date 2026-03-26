@@ -46,4 +46,14 @@ test.describe('ims-diff', () => {
     });
     expect(mode).toBe('onion');
   });
+
+  test('hotspotState returns { share }', async ({ page }) => {
+    let state = await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-diff');
+      el.setShare(75);
+      return el.hotspotState;
+    });
+    expect(state).toHaveProperty('share', 75);
+  });
 });

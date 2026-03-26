@@ -20,4 +20,16 @@ test.describe('ims-pano', () => {
     let toolbar = page.locator('ims-pano').locator('ims-pano-toolbar');
     await expect(toolbar).toBeVisible();
   });
+
+  test('hotspotState returns { yaw, pitch }', async ({ page }) => {
+    await page.waitForTimeout(2000);
+    let state = await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-pano');
+      el.lookAt(90, 15);
+      return el.hotspotState;
+    });
+    expect(state).toHaveProperty('yaw', 90);
+    expect(state).toHaveProperty('pitch', 15);
+  });
 });

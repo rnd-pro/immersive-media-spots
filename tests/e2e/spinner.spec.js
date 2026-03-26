@@ -45,4 +45,14 @@ test.describe('ims-spinner', () => {
     });
     expect(frame).toBe(5);
   });
+
+  test('hotspotState returns { frame }', async ({ page }) => {
+    let state = await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-spinner');
+      el.goToFrame(7);
+      return el.hotspotState;
+    });
+    expect(state).toHaveProperty('frame', 7);
+  });
 });

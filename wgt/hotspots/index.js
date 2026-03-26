@@ -55,7 +55,15 @@ export class ImsHotspots extends Symbiote {
    */
   #onSpotClick(spot) {
     if (spot.action) {
-      this.$['^' + spot.action]?.();
+      let bound = this.$['^' + spot.action];
+      if (typeof bound === 'function') {
+        bound();
+      } else {
+        let host = this.#getHostWidget();
+        if (host && typeof host[spot.action] === 'function') {
+          host[spot.action]();
+        }
+      }
     }
     if (spot.targetSrcData) {
       this.$['^onHotspotNavigate']?.(spot);
@@ -74,16 +82,11 @@ export class ImsHotspots extends Symbiote {
     return this.#hostWidget;
   }
 
-  /** @returns {number} */
-  #getStateValue() {
+  /** @returns {Record<string, number>} */
+  #getHostState() {
     let host = this.#getHostWidget();
-    if (!host || !host.isConnected) return 0;
-    let h = /** @type {any} */ (host);
-    // Spinner: class getter
-    if (h.currentFrame !== undefined) return h.currentFrame;
-    // Gallery: reactive state
-    if (h.localName === 'ims-gallery' && h.$) return h.$.current ?? 0;
-    return 0;
+    if (!host || !host.isConnected) return {};
+    return /** @type {any} */ (host).hotspotState || {};
   }
 
   #startStateLoop() {
@@ -95,14 +98,14 @@ export class ImsHotspots extends Symbiote {
   }
 
   #updateSpots() {
-    let stateVal = this.#getStateValue();
+    let state = this.#getHostState();
     let spotEls = this.shadowRoot.querySelectorAll('.spot');
     spotEls.forEach((el, i) => {
       let def = this.#spotDefs[i];
       if (!def) return;
 
       // Visibility
-      let visible = this.#checkVisibility(def, stateVal);
+      let visible = this.#checkVisibility(def, state);
       if (visible) {
         el.setAttribute('visible', '');
       } else {
@@ -111,6 +114,8 @@ export class ImsHotspots extends Symbiote {
 
       // Keyframe position
       if (def.keyframes) {
+        let stateKey = def.stateKey || Object.keys(state)[0] || 'frame';
+        let stateVal = state[stateKey] ?? 0;
         let pos = this.#interpolateKeyframes(def.keyframes, stateVal);
         /** @type {HTMLElement} */ (el).style.left = `${pos.x * 100}%`;
         /** @type {HTMLElement} */ (el).style.top = `${pos.y * 100}%`;
@@ -120,13 +125,15 @@ export class ImsHotspots extends Symbiote {
 
   /**
    * @param {HotspotSpot} def
-   * @param {number} stateVal
+   * @param {Record<string, number>} state
    * @returns {boolean}
    */
-  #checkVisibility(def, stateVal) {
+  #checkVisibility(def, state) {
     if (!def.visible) return true;
 
     for (let [key, val] of Object.entries(def.visible)) {
+      let stateVal = state[key];
+      if (stateVal === undefined) continue;
       if (Array.isArray(val)) {
         if (stateVal < val[0] || stateVal > val[1]) return false;
       } else {
@@ -142,11 +149,16 @@ export class ImsHotspots extends Symbiote {
    * @returns {{ x: number, y: number }}
    */
   #interpolateKeyframes(keyframes, stateVal) {
-    let keys = Object.keys(keyframes).map(Number).sort((a, b) => a - b);
+    /** @type {Map<number, { x: number, y: number }>} */
+    let map = new Map();
+    for (let [k, v] of Object.entries(keyframes)) {
+      map.set(Number(k), v);
+    }
+    let keys = [...map.keys()].sort((a, b) => a - b);
     if (!keys.length) return { x: 0, y: 0 };
 
-    if (stateVal <= keys[0]) return keyframes[keys[0]];
-    if (stateVal >= keys[keys.length - 1]) return keyframes[keys[keys.length - 1]];
+    if (stateVal <= keys[0]) return map.get(keys[0]);
+    if (stateVal >= keys[keys.length - 1]) return map.get(keys[keys.length - 1]);
 
     let lo = keys[0];
     let hi = keys[keys.length - 1];
@@ -159,8 +171,8 @@ export class ImsHotspots extends Symbiote {
     }
 
     let t = (stateVal - lo) / (hi - lo);
-    let from = keyframes[lo];
-    let to = keyframes[hi];
+    let from = map.get(lo);
+    let to = map.get(hi);
     return {
       x: from.x + (to.x - from.x) * t,
       y: from.y + (to.y - from.y) * t,

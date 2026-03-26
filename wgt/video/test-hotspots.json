@@ -1,0 +1,37 @@
+{
+  "imsType": "hotspots",
+  "spots": [
+    {
+      "id": "chapter-1",
+      "label": "Chapter 1",
+      "color": "#f40",
+      "action": "pause",
+      "x": 0.2,
+      "y": 0.15,
+      "visible": { "time": [1, 4] }
+    },
+    {
+      "id": "chapter-2",
+      "label": "Chapter 2 →",
+      "targetSrcData": "../gallery/test-data.json",
+      "x": 0.5,
+      "y": 0.5,
+      "stateKey": "time",
+      "visible": { "time": [4, 8] },
+      "keyframes": {
+        "4": { "x": 0.3, "y": 0.4 },
+        "6": { "x": 0.5, "y": 0.5 },
+        "8": { "x": 0.7, "y": 0.4 }
+      }
+    },
+    {
+      "id": "replay",
+      "label": "Replay",
+      "color": "#0af",
+      "action": "pause",
+      "x": 0.9,
+      "y": 0.9,
+      "visible": { "time": [8, 999] }
+    }
+  ]
+}

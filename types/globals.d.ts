@@ -105,6 +105,8 @@ interface HotspotVisibility {
   pitch?: [number, number];
   time?: [number, number];
   share?: [number, number];
+  rotationX?: [number, number];
+  rotationY?: [number, number];
 }
 
 interface HotspotKeyframes {
@@ -124,6 +126,7 @@ interface HotspotSpot {
   emit?: string;
   visible?: HotspotVisibility;
   keyframes?: HotspotKeyframes;
+  stateKey?: string;
 }
 
 interface ImsHotspotsData {

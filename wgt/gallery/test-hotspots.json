@@ -1,0 +1,39 @@
+{
+  "imsType": "hotspots",
+  "spots": [
+    {
+      "id": "detail-1",
+      "label": "See close-up →",
+      "color": "#f40",
+      "targetSrcData": "../pano/test-data.json",
+      "x": 0.6,
+      "y": 0.4,
+      "visible": { "image": 0 }
+    },
+    {
+      "id": "detail-2",
+      "label": "Compare →",
+      "color": "#0af",
+      "targetSrcData": "../diff/test-data.json",
+      "x": 0.4,
+      "y": 0.6,
+      "visible": { "image": 1 }
+    },
+    {
+      "id": "detail-3",
+      "label": "View in 3D →",
+      "color": "#ff0",
+      "targetSrcData": "../model/test-data.json",
+      "x": 0.5,
+      "y": 0.5,
+      "visible": { "image": 2 }
+    },
+    {
+      "id": "buy-link",
+      "label": "Buy this",
+      "url": "https://example.com/product",
+      "x": 0.5,
+      "y": 0.9
+    }
+  ]
+}

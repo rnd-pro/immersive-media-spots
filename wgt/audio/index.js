@@ -96,6 +96,10 @@ export class ImsAudio extends ImsBaseClass {
     return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
   }
 
+  get hotspotState() {
+    return { time: this.#audio?.currentTime ?? 0 };
+  }
+
   #drawWaveform() {
     if (!this.canvas || !this.#analyser) return;
     let ctx = this.ctx2d;

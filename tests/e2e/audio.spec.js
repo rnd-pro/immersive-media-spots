@@ -23,4 +23,14 @@ test.describe('ims-audio', () => {
       el.setVolume(50);
     });
   });
+
+  test('hotspotState returns { time }', async ({ page }) => {
+    let state = await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-audio');
+      return el.hotspotState;
+    });
+    expect(state).toHaveProperty('time');
+    expect(typeof state.time).toBe('number');
+  });
 });

@@ -153,6 +153,10 @@ class ImsSpinner extends ImsBaseClass {
     return this.#currentFrame;
   }
 
+  get hotspotState() {
+    return { frame: this.#currentFrame };
+  }
+
   #drawPreviewImage() {
     let src = this.srcData?.coverUrl || this.srcData?.srcList?.[this.srcData?.startFrame] || this.srcData?.srcList?.[0];
     if (!src) {

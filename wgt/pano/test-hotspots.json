@@ -1,0 +1,35 @@
+{
+  "imsType": "hotspots",
+  "spots": [
+    {
+      "id": "look-here",
+      "label": "Point of interest →",
+      "color": "#f40",
+      "targetSrcData": "../gallery/test-data.json",
+      "x": 0.5,
+      "y": 0.5,
+      "stateKey": "yaw",
+      "visible": { "yaw": [80, 120], "pitch": [-20, 20] },
+      "keyframes": {
+        "80":  { "x": 0.8, "y": 0.45 },
+        "100": { "x": 0.5, "y": 0.5 },
+        "120": { "x": 0.2, "y": 0.45 }
+      }
+    },
+    {
+      "id": "sky-marker",
+      "label": "Look up ↑",
+      "x": 0.5,
+      "y": 0.2,
+      "visible": { "pitch": [30, 85] }
+    },
+    {
+      "id": "exit",
+      "label": "Exit pano",
+      "color": "#0af",
+      "targetSrcData": "../spinner/test-data.json",
+      "x": 0.5,
+      "y": 0.85
+    }
+  ]
+}

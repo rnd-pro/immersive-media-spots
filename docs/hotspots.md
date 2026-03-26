@@ -64,18 +64,23 @@ Or managed automatically by `ims-viewer`:
 | `emit` | `string` | Dispatch custom event |
 | `visible` | `object` | Visibility rules (see below) |
 | `keyframes` | `object` | Position animation (see below) |
+| `stateKey` | `string` | Which host state key drives keyframes (default: first key from host) |
 
 ## State-Bound Coordinates
 
 Coordinates are normalized (0…1) relative to the widget's visual area.
 
-| Widget | State Key | Meaning |
+Every widget exposes a `hotspotState` getter returning a keyed state object. The table below shows the state keys for each widget type:
+
+| Widget | State Keys | Meaning |
 |---|---|---|
 | spinner | `frame` | Frame index |
 | gallery | `image` | Image index |
-| pano | `yaw`, `pitch` | Camera direction (degrees) |
-| diff | `share` | Slider position |
+| pano | `yaw`, `pitch` | Camera direction — yaw normalized to 0–360°, pitch clamped ±85° |
+| diff | `share` | Slider position (0–100) |
 | video | `time` | Playback seconds |
+| audio | `time` | Playback seconds |
+| model | `rotationX`, `rotationY` | Model rotation normalized to −π…π radians |
 
 ## Visibility Rules
 
@@ -86,6 +91,14 @@ Show/hide spots based on widget state:
 { "image": 2 }            // image 2 only
 { "yaw": [170, 190] }     // camera direction range
 { "time": [15, 30] }      // time range in seconds
+{ "share": [30, 70] }     // diff slider range (0–100)
+{ "rotationY": [-1, 1] }  // model rotation range (radians)
+```
+
+Multiple keys can be combined — the spot is visible only when **all** conditions are met:
+
+```json
+{ "yaw": [170, 190], "pitch": [-10, 10] }
 ```
 
 No `visible` property = always visible.
@@ -102,7 +115,35 @@ Interpolate position between keyed states:
 }
 ```
 
-Keys = frame/image index or seconds. Positions interpolate linearly.
+Keys = frame/image index, seconds, or other state value. Positions interpolate linearly.
+
+For widgets with multiple state keys (e.g. pano has `yaw` and `pitch`), use the `stateKey` property to select which key drives the keyframes:
+
+```json
+{
+  "id": "portal",
+  "label": "Enter →",
+  "x": 0.5,
+  "y": 0.5,
+  "stateKey": "yaw",
+  "visible": { "yaw": [80, 120] },
+  "keyframes": {
+    "80":  { "x": 0.8, "y": 0.4 },
+    "100": { "x": 0.5, "y": 0.45 },
+    "120": { "x": 0.2, "y": 0.4 }
+  }
+}
+```
+
+## Custom Widget Integration
+
+Any custom widget extending `ImsBaseClass` can support hotspots by implementing a `hotspotState` getter:
+
+```js
+get hotspotState() {
+  return { myKey: this.someValue };
+}
+```
 
 ## CSS Custom Properties
 

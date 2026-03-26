@@ -36,6 +36,7 @@ export class ImsModel extends ImsBaseClass {
   #animate = () => {
     if (this.#autoRotate && !this.#userInteracting && this.#model) {
       this.#model.rotation.y += 0.005;
+      this.#rotationY = this.#model.rotation.y;
     }
     this.#renderer.render(this.#scene, this.#camera);
   }
@@ -167,6 +168,12 @@ export class ImsModel extends ImsBaseClass {
     this.addEventListener('pointerdown', this.#onPointerDown);
     this.addEventListener('wheel', this.#onWheel);
     this.$.progress = 100;
+  }
+
+  get hotspotState() {
+    let nx = ((this.#rotationX % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+    let ny = ((this.#rotationY % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+    return { rotationX: nx, rotationY: ny };
   }
 
   /** Reset camera to initial position */

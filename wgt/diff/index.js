@@ -278,6 +278,10 @@ class ImsDiff extends ImsBaseClass {
 
   // --- Public API ---
 
+  get hotspotState() {
+    return { share: this.#share * 100 };
+  }
+
   /**
    * Set the diff split position
    * @param {number} percent - share percentage (0-100)

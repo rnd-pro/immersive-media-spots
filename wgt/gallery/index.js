@@ -230,6 +230,10 @@ export class ImsGallery extends ImsBaseClass {
 
   // --- Public API ---
 
+  get hotspotState() {
+    return { image: this.$.current };
+  }
+
   /**
    * Go to a specific image
    * @param {number} index - image index (0-based)

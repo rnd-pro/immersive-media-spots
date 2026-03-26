@@ -81,4 +81,15 @@ test.describe('ims-gallery', () => {
     await expect(prevBtn).not.toHaveAttribute('disabled');
     await expect(nextBtn).toHaveAttribute('disabled');
   });
+
+  test('hotspotState returns { image }', async ({ page }) => {
+    await page.waitForTimeout(2000);
+    let state = await page.evaluate(() => {
+      /** @type {any} */
+      let el = document.querySelector('ims-gallery');
+      el.goTo(2);
+      return el.hotspotState;
+    });
+    expect(state).toHaveProperty('image', 2);
+  });
 });

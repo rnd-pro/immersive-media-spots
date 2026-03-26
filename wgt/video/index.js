@@ -180,6 +180,10 @@ export class ImsVideo extends ImsBaseClass {
     this.$.progress = 100;
   }
 
+  get hotspotState() {
+    return { time: this.ref.video?.currentTime ?? 0 };
+  }
+
   /**
    * @returns {HTMLVideoElement}
    */

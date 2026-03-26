@@ -1,0 +1,36 @@
+{
+  "imsType": "hotspots",
+  "spots": [
+    {
+      "id": "front-label",
+      "label": "Front face",
+      "color": "#f40",
+      "x": 0.5,
+      "y": 0.3,
+      "visible": { "rotationY": [-0.5, 0.5] }
+    },
+    {
+      "id": "side-label",
+      "label": "Side detail →",
+      "color": "#0af",
+      "targetSrcData": "../gallery/test-data.json",
+      "x": 0.7,
+      "y": 0.5,
+      "stateKey": "rotationY",
+      "visible": { "rotationY": [1.0, 2.0] },
+      "keyframes": {
+        "1.0": { "x": 0.8, "y": 0.5 },
+        "1.5": { "x": 0.7, "y": 0.45 },
+        "2.0": { "x": 0.6, "y": 0.5 }
+      }
+    },
+    {
+      "id": "top-view",
+      "label": "Top surface",
+      "color": "#ff0",
+      "x": 0.5,
+      "y": 0.2,
+      "visible": { "rotationX": [-1.2, -0.5] }
+    }
+  ]
+}

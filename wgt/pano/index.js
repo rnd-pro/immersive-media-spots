@@ -135,6 +135,10 @@ export class ImsPano extends ImsBaseClass {
     this.$.progress = 100;
   }
 
+  get hotspotState() {
+    return { yaw: ((this.#lon % 360) + 360) % 360, pitch: this.#lat };
+  }
+
   /**
    * Set the camera look direction
    * @param {number} lon - longitude in degrees
