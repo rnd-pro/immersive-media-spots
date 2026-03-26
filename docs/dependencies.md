@@ -6,7 +6,7 @@ IMS widgets are designed to keep a minimal footprint. Heavy third-party librarie
 
 | Package | Specifier | Used by |
 |---------|-----------|---------|
-| [Symbiote.js](https://github.com/nicothed/symbiote.js) | `@symbiotejs/symbiote` | All widgets |
+| [Symbiote.js](https://github.com/symbiotejs/symbiote.js) | `@symbiotejs/symbiote` | All widgets |
 
 Symbiote.js is the only mandatory dependency. It provides the reactive web component base class used by every IMS widget.
 
@@ -16,7 +16,7 @@ Symbiote.js is the only mandatory dependency. It provides the reactive web compo
 |---------|-----------|---------|---------|
 | [Three.js](https://threejs.org/) | `three` | ims-pano, ims-model | WebGL rendering for 360° panoramas and 3D models |
 | Three.js addons | `three/addons/` | ims-model | GLTFLoader for `.glb`/`.gltf` model files |
-| [hls.js](https://github.com/nicothed/hls.js/) | `hls.js/dist/hls.mjs` | ims-video | HLS adaptive streaming (only when `hlsSrc` is configured) |
+| [hls.js](https://github.com/video-dev/hls.js) | `hls.js/dist/hls.mjs` | ims-video | HLS adaptive streaming (only when `hlsSrc` is configured) |
 
 > **If you only use `ims-spinner`, `ims-gallery`, `ims-diff`, `ims-audio`, or `ims-hotspots` — no optional dependencies are needed at all.**
 

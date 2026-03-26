@@ -12,9 +12,9 @@
 - **One tag — one widget.** Just `<ims-viewer src-data="data.json">` and you're done.
 - **Universal.** Works in any stack: vanilla HTML, React, Vue, Angular, Svelte — anything that renders DOM.
 - **Smart loading.** Adaptive resolution based on viewport & DPI, lazy loading via IntersectionObserver, on-demand dependency imports.
-- **Hypermedia navigation.** Link widgets together with interactive hotspots — let users explore 3D products, then dive into 360° interiors, then watch a demo video, all in one seamless flow.
+- **Hypermedia navigation.** Link widgets together with interactive hotspots — let users explore 3D products, then dive into 360°, then watch a video, all in one seamless flow.
 - **Themeable.** Full CSS custom properties for colors, sizing, and layout. No CSS framework lock-in.
-- **Lightweight.** Built on [Symbiote.js](https://github.com/nicothed/symbiote.js) — each widget loads only what it needs.
+- **Lightweight.** Built on [Symbiote.js](https://github.com/symbiotejs/symbiote.js) — each widget loads only what it needs.
 
 ## 🧩 Widgets
 
