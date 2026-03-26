@@ -7,7 +7,7 @@
 
 **Simple web components that turn static pages into immersive, interactive media experiences.** Drop a single HTML tag — get a full-featured 360° spinner, panorama viewer, image comparison slider, or video player.
 
-## ✨ Why IMS?
+## Why IMS?
 
 - **One tag — one widget.** Just `<ims-viewer src-data="data.json">` and you're done.
 - **Universal.** Works in any stack: vanilla HTML, React, Vue, Angular, Svelte — anything that renders DOM.
@@ -16,7 +16,7 @@
 - **Themeable.** Full CSS custom properties for colors, sizing, and layout. No CSS framework lock-in.
 - **Lightweight.** Built on [Symbiote.js](https://github.com/symbiotejs/symbiote.js) — each widget loads only what it needs.
 
-## 🧩 Widgets
+## Widgets
 
 | Widget | Description | Docs |
 |--------|-------------|------|
@@ -31,7 +31,7 @@
 | **ims-hotspots** | Interactive overlay spots with state-bound positioning and keyframe animation | [docs](./docs/hotspots.md) |
 | **ims-viewer** | Universal loader — auto-imports any widget by type with version control, manages hotspot navigation and history | [docs](./docs/viewer.md) |
 
-## 🚀 Quick Start
+## Quick Start
 
 **1.** Set up [dependencies](./docs/dependencies.md) — add an importmap or install via npm (only Symbiote.js is required; Three.js and hls.js are needed only for the widgets that use them)
 
@@ -49,7 +49,7 @@
 
 That's it. The viewer reads `imsType` from `product.json` and dynamically imports the right widget.
 
-### 📌 Version pinning
+### Version pinning
 
 Every data JSON can include a `version` field that locks the widget import to an exact library release. This guarantees that previously published pages keep working even after new IMS versions are released with breaking changes.
 
@@ -82,7 +82,7 @@ Skip the viewer and load a specific widget directly:
 npm install immersive-media-spots
 ```
 
-## 🔗 Hypermedia Navigation
+## Hypermedia Navigation
 
 Combine `ims-viewer` with `ims-hotspots` to create connected experiences:
 
@@ -96,34 +96,30 @@ Combine `ims-viewer` with `ims-hotspots` to create connected experiences:
 
 Hotspots link widgets together — click a spot on a 360° product to open a detail gallery, then jump to a panoramic interior, all with animated back navigation. [→ Hotspots docs](./docs/hotspots.md)
 
-## ⚙️ Common Features
+## Common Features
 
 All widgets share a base architecture that provides:
 
-- 🎯 **Adaptive loading** — automatically selects the best resolution variant for the viewport and DPI
-- 🔄 **Lazy loading** — `lazy` attribute defers initialization until the element enters the viewport
-- 🖥️ **Fullscreen** — native Fullscreen API with CSS fallback
-- 📱 **Mobile-ready** — touch gestures, responsive sizing, pointer event support
-- 🎨 **CSS theming** — design tokens for toolbar, colors, spacing, and transitions
-- 🔌 **Plugin system** — extend lifecycle hooks with custom plugins ([→ plugins docs](./docs/plugins.md))
-- 📡 **Events** — standard lifecycle events: `ims-load`, `ims-ready`, `ims-error` ([→ events docs](./docs/events.md))
-- 🏷️ **Attribute overrides** — override any JSON config property via HTML attributes
+- **Adaptive loading** — automatically selects the best resolution variant for the viewport and DPI
+- **Lazy loading** — `lazy` attribute defers initialization until the element enters the viewport
+- **Fullscreen** — native Fullscreen API with CSS fallback
+- **Mobile-ready** — touch gestures, responsive sizing, pointer event support
+- **CSS theming** — design tokens for toolbar, colors, spacing, and transitions
+- **Plugin system** — extend lifecycle hooks with custom plugins ([→ plugins docs](./docs/plugins.md))
+- **Events** — standard lifecycle events: `ims-load`, `ims-ready`, `ims-error` ([→ events docs](./docs/events.md))
+- **Attribute overrides** — override any JSON config property via HTML attributes
 
-## 📚 Documentation
+## Documentation
 
-Full per-widget API reference, config schemas, and CSS custom properties:
+- [All docs](./docs/)
+- [Dependencies](./docs/dependencies.md) — import maps and CDN setup
+- [Events](./docs/events.md) — lifecycle events reference
+- [Fullscreen](./docs/fullscreen.md) — fullscreen API and CSS fallback
+- [Plugins](./docs/plugins.md) — extending widgets with custom plugins
 
-| | | |
-|---|---|---|
-| [Spinner](./docs/spinner.md) | [Gallery](./docs/gallery.md) | [Diff](./docs/diff.md) |
-| [Pano](./docs/pano.md) | [Model](./docs/model.md) | [Video](./docs/video.md) |
-| [Audio](./docs/audio.md) | [Map](./docs/map.md) | [Hotspots](./docs/hotspots.md) |
-| [Viewer](./docs/viewer.md) | [Events](./docs/events.md) | [Dependencies](./docs/dependencies.md) |
-| [Fullscreen](./docs/fullscreen.md) | [Plugins](./docs/plugins.md) | |
+## Articles & Demos
 
-## 📰 Articles & Demos
-
-- [Concept details and live demo](https://rnd-pro.com/pulse/immersive-media-spots/)
+- [Concept details and live demo](https://rnd-pro.com/ims/)
 
 ## Contributing
 
