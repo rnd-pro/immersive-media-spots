@@ -7,6 +7,7 @@ IMS widgets are designed to keep a minimal footprint. Heavy third-party librarie
 | Package | Specifier | Used by |
 |---------|-----------|---------|
 | [Symbiote.js](https://github.com/symbiotejs/symbiote.js) | `@symbiotejs/symbiote` | All widgets |
+| Symbiote.js utilities | `@symbiotejs/symbiote/utils` | All widgets |
 
 Symbiote.js is the only mandatory dependency. It provides the reactive web component base class used by every IMS widget.
 
@@ -29,6 +30,7 @@ The simplest way to provide dependencies is an [importmap](https://developer.moz
   {
     "imports": {
       "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@3/+esm",
+      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/+esm",
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
       "hls.js/dist/hls.mjs": "https://cdn.jsdelivr.net/npm/hls.js@1.5/+esm"
@@ -43,7 +45,8 @@ Only include the entries you actually need. For example, if you only use `ims-sp
 <script type="importmap">
   {
     "imports": {
-      "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@3/+esm"
+      "@symbiotejs/symbiote": "https://cdn.jsdelivr.net/npm/@symbiotejs/symbiote@3/+esm",
+      "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils"
     }
   }
 </script>
