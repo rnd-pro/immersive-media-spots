@@ -18,6 +18,7 @@ Symbiote.js is the only mandatory dependency. It provides the reactive web compo
 | [Three.js](https://threejs.org/) | `three` | ims-pano, ims-model | WebGL rendering for 360° panoramas and 3D models |
 | Three.js addons | `three/addons/` | ims-model | GLTFLoader for `.glb`/`.gltf` model files |
 | [hls.js](https://github.com/video-dev/hls.js) | `hls.js/dist/hls.mjs` | ims-video | HLS adaptive streaming (only when `hlsSrc` is configured) |
+| [Leaflet](https://leafletjs.com/) | `leaflet` | ims-map | Interactive tile-based maps |
 
 > **If you only use `ims-spinner`, `ims-gallery`, `ims-diff`, `ims-audio`, or `ims-hotspots` — no optional dependencies are needed at all.**
 
@@ -33,7 +34,8 @@ The simplest way to provide dependencies is an [importmap](https://developer.moz
       "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/+esm",
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
-      "hls.js/dist/hls.mjs": "https://cdn.jsdelivr.net/npm/hls.js@1.5/+esm"
+      "hls.js/dist/hls.mjs": "https://cdn.jsdelivr.net/npm/hls.js@1.5/+esm",
+      "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@2.0.0-alpha.1/dist/leaflet-src.js"
     }
   }
 </script>
@@ -63,6 +65,7 @@ npm install @symbiotejs/symbiote
 # Optional — only if you use the corresponding widgets
 npm install three       # ims-pano, ims-model
 npm install hls.js      # ims-video with HLS
+npm install leaflet     # ims-map
 ```
 
 The bundler will tree-shake unused widgets and their dependencies automatically.
