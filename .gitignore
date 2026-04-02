@@ -18,7 +18,8 @@ build
 dist
 env
 test
-test-results
+test-results/
+.last-run.json
 cit-config.json
 cit
 
