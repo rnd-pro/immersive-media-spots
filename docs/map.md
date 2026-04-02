@@ -8,7 +8,7 @@ Interactive tile-based map widget powered by [Leaflet.js](https://leafletjs.com/
 <ims-map src-data="path/to/data.json"></ims-map>
 ```
 
-## Config
+## Widget Data
 
 ```json
 {
@@ -23,7 +23,7 @@ Interactive tile-based map widget powered by [Leaflet.js](https://leafletjs.com/
 }
 ```
 
-## Config Properties
+## Widget Data Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

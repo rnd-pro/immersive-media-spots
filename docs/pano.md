@@ -16,7 +16,21 @@
 | `lazy` | Enable lazy loading |
 | `no-preloader` | Disable loading spinner |
 
-## Config (`ImsPanoData`)
+## Widget Data (`ImsPanoData`)
+
+```json
+{
+  "imsType": "pano",
+  "autoplay": false,
+  "fov": 90,
+  "urlTemplate": "https://cdn.example.com/images/{UID}/{VARIANT}",
+  "variants": ["120", "320", "640", "860", "1024", "1200", "2048"],
+  "maxVariantName": "max",
+  "cdnIdList": ["eb698ef5-0eb6-48a1-1641-08862eae1700"]
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

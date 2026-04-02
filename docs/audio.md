@@ -16,7 +16,20 @@ Audio player with waveform visualization.
 | `lazy` | Enable lazy loading |
 | `no-preloader` | Disable loading spinner |
 
-## Config (`ImsAudioData`)
+## Widget Data (`ImsAudioData`)
+
+```json
+{
+  "imsType": "audio",
+  "autoplay": false,
+  "loop": false,
+  "waveformColor": "rgba(79, 195, 247, 0.4)",
+  "progressColor": "rgba(79, 195, 247, 0.6)",
+  "srcList": ["./audio-file.wav"]
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

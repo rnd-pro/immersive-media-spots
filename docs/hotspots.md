@@ -22,7 +22,7 @@ Or managed automatically by `ims-viewer`:
 <ims-viewer src-data="spinner.json" hotspots="hotspots.json"></ims-viewer>
 ```
 
-## Config
+## Widget Data
 
 ```json
 {

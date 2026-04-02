@@ -16,7 +16,20 @@
 | `lazy` | Enable lazy loading |
 | `no-preloader` | Disable loading spinner |
 
-## Config (`ImsModelData`)
+## Widget Data (`ImsModelData`)
+
+```json
+{
+  "imsType": "model",
+  "autoplay": false,
+  "fov": 45,
+  "bgColor": "",
+  "envMapIntensity": 1,
+  "srcList": ["./model.glb"]
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

@@ -16,7 +16,28 @@
 | `lazy` | Enable lazy loading (IntersectionObserver) |
 | `no-preloader` | Disable loading spinner |
 
-## Config (`ImsSpinnerData`)
+## Widget Data (`ImsSpinnerData`)
+
+```json
+{
+  "imsType": "spinner",
+  "urlTemplate": "https://cdn.example.com/images/{UID}/{VARIANT}",
+  "variants": ["120", "320", "640", "860", "1024", "1200", "2048"],
+  "autoplay": true,
+  "startFrame": 0,
+  "isCycled": true,
+  "speed": 50,
+  "showCover": true,
+  "coverUrl": "https://cdn.example.com/images/37acbe5d-ceb8-486e-98fb-4ef5e09a8800/640",
+  "cdnIdList": [
+    "37acbe5d-ceb8-486e-98fb-4ef5e09a8800",
+    "fd79d5db-7cd4-42e1-4bbb-f80b4a84dc00",
+    "..."
+  ]
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

@@ -19,7 +19,26 @@ Video player with HLS support, captions, and custom controls.
 | `loop` | Loop playback (passed to video element) |
 | `muted` | Start muted (passed to video element) |
 
-## Config (`ImsVideoData`)
+## Widget Data (`ImsVideoData`)
+
+```json
+{
+  "imsType": "video",
+  "autoplay": false,
+  "hlsSrc": "https://example.com/video/manifest/video.m3u8",
+  "sources": [
+    { "label": "HQ", "src": "https://example.com/video/hq.mp4", "type": "video/mp4" },
+    { "label": "LQ", "src": "https://example.com/video/lq.mp4", "type": "video/mp4" }
+  ],
+  "tracks": [
+    { "kind": "subtitles", "src": "./subtitles.vtt", "srclang": "en", "label": "EN" }
+  ],
+  "coverUrl": "https://example.com/video/thumbnail.jpg",
+  "showCover": true
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

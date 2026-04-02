@@ -16,7 +16,32 @@ Image gallery with navigation, crossfade transitions, and optional captions.
 | `lazy` | Enable lazy loading |
 | `no-preloader` | Disable loading spinner |
 
-## Config (`ImsGalleryData`)
+## Widget Data (`ImsGalleryData`)
+
+```json
+{
+  "imsType": "gallery",
+  "urlTemplate": "https://cdn.example.com/images/{UID}/{VARIANT}",
+  "variants": ["120", "320", "640", "860", "1024", "1200", "2048"],
+  "cdnIdList": [
+    "37acbe5d-ceb8-486e-98fb-4ef5e09a8800",
+    "352cb933-4604-41dc-957a-2c02b2305000",
+    "0af30700-2327-4b33-dd29-2f56c124b900",
+    "4a8df1f7-d023-413f-2a12-18d3cde77b00"
+  ],
+  "captions": [
+    "Mountain landscape at sunrise",
+    "Forest canopy from above",
+    "Coastal cliffs and ocean waves",
+    "Desert dunes under moonlight"
+  ],
+  "transitionDuration": 400,
+  "autoplayInterval": 3000,
+  "loop": true
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|

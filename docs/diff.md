@@ -17,7 +17,24 @@ Before/after image comparison with multiple modes.
 | `no-preloader` | Disable loading spinner |
 | `vertical` | Set automatically when orientation is vertical |
 
-## Config (`ImsDiffData`)
+## Widget Data (`ImsDiffData`)
+
+```json
+{
+  "imsType": "diff",
+  "urlTemplate": "https://cdn.example.com/images/{UID}/{VARIANT}",
+  "variants": ["120", "320", "640", "860", "1024", "1200", "2048", "4096"],
+  "startPosition": 50,
+  "mode": "slider",
+  "orientation": "horizontal",
+  "cdnIdList": [
+    "352cb933-4604-41dc-957a-2c02b2305000",
+    "0af30700-2327-4b33-dd29-2f56c124b900"
+  ]
+}
+```
+
+### Properties
 
 | Property | Type | Default | Description |
 |---|---|---|---|
