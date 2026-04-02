@@ -295,7 +295,8 @@ class ImsSpinner extends ImsBaseClass {
     this.removeEventListener('mousemove', this._zoomPanHandler);
   }
 
-  onResize() { 
+  onResize() {
+    super.onResize();
     if (this.#playStatusFlag) {
       this.#loadContents(this.srcData, true);
     }
