@@ -1,78 +1,17 @@
 // Type definitions for interactive-media-spots
 
-// --- Common Data Types ---
+// --- Widget Data Types (re-exported from source classes) ---
 
-interface ImsBaseData {
-  imsType: string;
-  version: string;
-  hideUi?: boolean;
-  urlTemplate?: string;
-  variants?: string[];
-  maxVariantName?: string;
-  cdnIdList?: string[];
-  srcList?: string[];
-  dispatchEvents?: boolean;
-}
+type ImsDiffData = import('../wgt/diff/ImsDiffData.js').ImsDiffData;
+type ImsGalleryData = import('../wgt/gallery/ImsGalleryData.js').ImsGalleryData;
+type ImsPanoData = import('../wgt/pano/ImsPanoData.js').ImsPanoData;
+type ImsSpinnerData = import('../wgt/spinner/ImsSpinnerData.js').ImsSpinnerData;
+type ImsVideoData = import('../wgt/video/ImsVideoData.js').ImsVideoData;
+type ImsModelData = import('../wgt/model/ImsModelData.js').ImsModelData;
+type ImsAudioData = import('../wgt/audio/ImsAudioData.js').ImsAudioData;
+type ImsMapData = import('../wgt/map/ImsMapData.js').ImsMapData;
 
-// --- Widget Data Types ---
-
-interface ImsDiffData extends ImsBaseData {
-  imsType: 'diff';
-  startPosition?: number;
-  filters?: string[];
-}
-
-interface ImsGalleryData extends ImsBaseData {
-  imsType: 'gallery';
-}
-
-interface ImsPanoData extends ImsBaseData {
-  imsType: 'pano';
-  autoplay?: boolean;
-  startPosition?: number;
-  fov?: number;
-}
-
-interface ImsSpinnerData extends ImsBaseData {
-  imsType: 'spinner';
-  autoplay?: boolean;
-  startFrame?: number;
-  invertDirection?: boolean;
-  isCycled?: boolean;
-  motionBlur?: boolean;
-  coverUrl?: string;
-  showCover?: boolean;
-  speed?: number;
-  multiplePlay?: boolean;
-}
-
-interface ImsVideoData extends ImsBaseData {
-  imsType: 'video';
-  autoplay?: boolean;
-  hlsSrc?: string;
-  hlsSubtitles?: boolean;
-  sources?: Array<Record<string, string>>;
-  tracks?: Array<Record<string, string>>;
-  coverUrl?: string;
-  showCover?: boolean;
-}
-
-interface ImsModelData extends ImsBaseData {
-  imsType: 'model';
-  autoplay?: boolean;
-  fov?: number;
-  bgColor?: string;
-  envMapIntensity?: number;
-}
-
-interface ImsAudioData extends ImsBaseData {
-  imsType: 'audio';
-  autoplay?: boolean;
-  loop?: boolean;
-  waveformColor?: string;
-  progressColor?: string;
-}
-
+// --- Map Marker Type ---
 
 interface ImsMapMarker {
   lat: number;
@@ -84,16 +23,6 @@ interface ImsMapMarker {
   targetHotspotsData?: string;
   action?: string;
   api?: Record<string, any>;
-}
-
-interface ImsMapData extends ImsBaseData {
-  imsType: 'map';
-  center?: [number, number];
-  zoom?: number;
-  minZoom?: number;
-  maxZoom?: number;
-  tileUrl?: string;
-  markers?: ImsMapMarker[];
 }
 
 // --- Hotspots Data Types ---

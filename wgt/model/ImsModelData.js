@@ -5,12 +5,6 @@ export class ImsModelData {
   version = VERSION;
   hideUi = false;
   autoplay = true;
-  urlTemplate = '';
-  /** @type {String[]} */
-  variants = [];
-  maxVariantName = '';
-  /** @type {String[]} */
-  cdnIdList = [];
   /** @type {String[]} */
   srcList = [];
   dispatchEvents = false;

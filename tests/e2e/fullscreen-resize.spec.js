@@ -201,14 +201,14 @@ test.describe('fullscreen triggers onResize and variant reload', () => {
         let origOnResize = el.onResize.bind(el);
         el.onResize = () => {
           let variant = el.srcData.srcList?.[0]?.split('/').pop() || 'none';
-          resizeCalls.push({
+          let entry = {
             variant,
             time: Date.now(),
-          });
+            variantAfter: '',
+          };
+          resizeCalls.push(entry);
           origOnResize();
-          // Record variant AFTER onResize recalculates
-          let variantAfter = el.srcData.srcList?.[0]?.split('/').pop() || 'none';
-          resizeCalls[resizeCalls.length - 1].variantAfter = variantAfter;
+          entry.variantAfter = el.srcData.srcList?.[0]?.split('/').pop() || 'none';
         };
 
         // Toggle fullscreen ON

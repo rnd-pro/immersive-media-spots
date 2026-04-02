@@ -8,11 +8,6 @@ export class ImsAudioData {
   loop = false;
   /** @type {String[]} */
   srcList = [];
-  /** @type {String[]} */
-  cdnIdList = [];
-  urlTemplate = '';
-  /** @type {String[]} */
-  variants = [];
   maxVariantName = '';
   waveformColor = '';
   progressColor = '';
