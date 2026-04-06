@@ -1,6 +1,6 @@
 {
   "name": "immersive-media-spots",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
@@ -41,7 +41,7 @@
     "test": "node --test tests/*.test.js && npx playwright test",
     "test:unit": "node --test tests/*.test.js",
     "test:e2e": "npx playwright test",
-    "pub": "npm run sync-version && npm run types && npm test && npm publish --force"
+    "pub": "npm run sync-version && npm run types && npm test && npm publish"
   },
   "author": "team@rnd-pro.com",
   "license": "MIT",
