@@ -1,6 +1,6 @@
 {
   "name": "immersive-media-spots",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
@@ -22,9 +22,6 @@
     "./utils/imageToData": "./lib/imageToData.js",
     "./plugins/watermark": "./lib/plugins/watermark.js",
     "./plugins/analytics": "./lib/plugins/analytics.js",
-    "./tokens.css": "./lib/tokens.css",
-    "./themes/light.css": "./lib/themes/light.css",
-    "./themes/minimal.css": "./lib/themes/minimal.css",
     "./*": "./*"
   },
   "publishConfig": {
@@ -52,7 +49,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@symbiotejs/symbiote": "^3.5.7",
+    "@symbiotejs/symbiote": "^3.5.8",
     "hls.js": "^1.5.18",
     "leaflet": "^2.0.0-alpha.1",
     "three": "^0.171.0"
