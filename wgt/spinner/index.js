@@ -297,9 +297,13 @@ class ImsSpinner extends ImsBaseClass {
 
   onResize() {
     super.onResize();
-    if (this.#playStatusFlag) {
-      this.#loadContents(this.srcData, true);
+    if (this.preview) {
+      if (!this.srcData?.coverUrl) {
+        this.#drawPreviewImage();
+      }
+      return;
     }
+    this.#loadContents(this.srcData, true);
   }
 
   #moveHandler = (e) => {

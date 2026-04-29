@@ -1,6 +1,6 @@
 {
   "name": "immersive-media-spots",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
