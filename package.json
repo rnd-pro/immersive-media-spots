@@ -1,6 +1,6 @@
 {
   "name": "immersive-media-spots",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Immersive Media Spots",
   "type": "module",
   "sideEffects": false,
@@ -49,7 +49,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@symbiotejs/symbiote": "^3.5.8",
+    "@symbiotejs/symbiote": "^3.7.0",
     "hls.js": "^1.5.18",
     "leaflet": "^2.0.0-alpha.1",
     "three": "^0.171.0"
