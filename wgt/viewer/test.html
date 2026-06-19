@@ -2,6 +2,7 @@
   {
     "imports": {
       "@symbiotejs/symbiote": "https://esm.run/@symbiotejs/symbiote",
+      "@symbiotejs/symbiote/webmcp": "https://esm.run/@symbiotejs/symbiote/webmcp",
       "@symbiotejs/symbiote/utils": "https://esm.run/@symbiotejs/symbiote/utils",
       "@symbiotejs/symbiote/core/devMessages.js": "https://esm.run/@symbiotejs/symbiote/core/devMessages.js",
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/+esm",
@@ -13,8 +14,11 @@
 </script>
  
 <script type="module">
+  import Symbiote from '@symbiotejs/symbiote';
+  import '@symbiotejs/symbiote/webmcp';
   import '@symbiotejs/symbiote/core/devMessages.js';
   window['__FULLSCREEN_API_UNSUPPORTED_TEST__'] = true;
+  Symbiote.mcpToolMode = true;
 </script>
 <script src="./index.js" type="module"></script>
 

@@ -49,7 +49,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@symbiotejs/symbiote": "^3.8.0",
+    "@symbiotejs/symbiote": "^3.8.2",
     "hls.js": "^1.5.18",
     "leaflet": "^2.0.0-alpha.1",
     "three": "^0.171.0"
